@@ -1,12 +1,21 @@
-import React from 'react';
-import './App.css';
 import 'antd/dist/antd.css';
-import Home from './Home'
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import ErrorBoundary from './components/ErrorBoundary';
+import routers from './routers';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <BrowserRouter>
+        <ErrorBoundary>
+        {
+          routers.map((item, index) => {
+            return <Route key={index} {...item} />
+          })
+        }
+        </ErrorBoundary>
+      </BrowserRouter>
     </div>
   );
 }
