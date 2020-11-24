@@ -8,6 +8,8 @@ import PageTest from '../Test'
 import PageTheme from '../Theme'
 import PageRecoil from '../Recoil'
 import PageMobx from '../Mobx'
+import PageAlgorithm from '../Algorithm'
+import PageMemoryLeak from '../MemoryLeak'
 
 const routers = [
   {
@@ -69,7 +71,19 @@ const routers = [
     name: 'mobx',
     component: PageMobx,
     exact: true
-  }
+  },
+  {
+    path: '/algorithm',
+    name: 'algorithm',
+    component: PageAlgorithm,
+    exact: true
+  },
+  {
+    path: '/memoryleak',
+    name: 'memoryleak',
+    component: PageMemoryLeak,
+    exact: true
+  },
 ];
 
 export default routers;
