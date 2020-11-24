@@ -476,18 +476,6 @@ module.exports = function(webpackEnv) {
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
             },
-            {
-              test: lessRegex,
-              exclude: lessModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 3,
-                  sourceMap: isEnvProduction && shouldUseSourceMap
-                },
-                'less-loader'
-              ),
-              sideEffects: true,
-            },
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
             {
@@ -501,6 +489,31 @@ module.exports = function(webpackEnv) {
                   },
                 },
                 'sass-loader'
+              ),
+            },
+            {
+              test: lessRegex,
+              exclude: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 3,
+                  sourceMap: isEnvProduction && shouldUseSourceMap
+                },
+                'less-loader'
+              ),
+              sideEffects: true,
+            },
+            {
+              test: lessRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 3,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: {
+                    getLocalIdent: getCSSModuleLocalIdent,
+                  },
+                },
+                'less-loader'
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.

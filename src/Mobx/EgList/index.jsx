@@ -1,3 +1,4 @@
+import styles from './index.module.less';
 import React from 'react';
 import { observer } from 'mobx-react';
 import Filler from './Filler';
@@ -27,7 +28,7 @@ const getItem = (id) => {
 class EgList extends React.Component {
   render () {
     const { itemIdList, current } = this.props.rootCache;
-    return <div>
+    return <div className={styles['eg_list']}>
       <div>{ current }</div>
       <br/>
       <div>id list: { JSON.stringify(itemIdList) }</div>
