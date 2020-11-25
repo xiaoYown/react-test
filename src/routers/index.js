@@ -10,6 +10,7 @@ import PageRecoil from '../Recoil'
 import PageMobx from '../Mobx'
 import PageAlgorithm from '../Algorithm'
 import PageMemoryLeak from '../MemoryLeak'
+import PageVirtualized from '../Virtualized'
 
 const routers = [
   {
@@ -32,7 +33,7 @@ const routers = [
   },
   {
     path: '/dataset',
-    name: 'dataset',
+    name: 'antv dataset',
     component: PageDataset,
     exact: true
   },
@@ -74,14 +75,20 @@ const routers = [
   },
   {
     path: '/algorithm',
-    name: 'algorithm',
+    name: '算法优化',
     component: PageAlgorithm,
     exact: true
   },
   {
     path: '/memoryleak',
-    name: 'memoryleak',
+    name: '内存泄露',
     component: PageMemoryLeak,
+    exact: true
+  },
+  {
+    path: '/virtualized',
+    name: '虚拟列表',
+    component: PageVirtualized,
     exact: true
   },
 ];
