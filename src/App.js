@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
-import routers from './routers';
+import routers from './routes';
 
 function App() {
   return (
