@@ -2,7 +2,6 @@ import styles from './index.module.less';
 import React from 'react';
 import { observer } from 'mobx-react';
 import Filler from './Filler';
-
 import { rootCache, setCurrent, itemListCache } from './store/state';
 
 const Item = observer(({ options, border }) => {

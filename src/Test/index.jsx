@@ -2,6 +2,18 @@ import "./index.less";
 import React from "react";
 import ReactDOM from "react-dom";
 import GetDerivedStateFromProps from './GetDerivedStateFromProps';
+import lodash from 'lodash';
+
+const one = {
+  fruit: 'apple',
+  energy: '255kJ',
+};
+
+const two = {
+  energy: '255kJ',
+  fruit: 'apple',
+};
+console.log(lodash.isEqual(one, two));
 
 class PageTest extends React.Component {
   state = {

@@ -10,7 +10,7 @@ const Filler = observer(props => {
   const { itemListCache, rootCache } = props
   const { current } = rootCache
   const initialVal = itemListCache[current] ? itemListCache[current].value : ''
-  console.log(initialVal)
+  // console.log(initialVal)
   const [value, setValue] = useState(initialVal)
 
   const onHandleChange = (e) => {

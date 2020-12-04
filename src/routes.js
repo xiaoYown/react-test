@@ -1,17 +1,18 @@
-import PageIndex from './Index'
-import PageHome from './Home'
-import PageFlv from './Flv'
-import PageDataset from './Dataset'
-import PageL7 from './L7'
-import PageEcharts from './Echarts'
-import PageUserAgent from './UserAgent'
-import PageTest from './Test'
-import PageTheme from './Theme'
-import PageRecoil from './Recoil'
-import PageMobx from './Mobx'
-import PageAlgorithm from './Algorithm'
-import PageMemoryLeak from './MemoryLeak'
-import PageVirtualized from './Virtualized'
+import PageIndex from './Index';
+import PageHome from './Home';
+import PageFlv from './Flv';
+import PageDataset from './Dataset';
+import PageL7 from './L7';
+import PageEcharts from './Echarts';
+import PageUserAgent from './UserAgent';
+import PageTest from './Test';
+import PageTheme from './Theme';
+import PageRecoil from './Recoil';
+import PageMobx from './Mobx';
+import PageAlgorithm from './Algorithm';
+import PageMemoryLeak from './MemoryLeak';
+import PageVirtualized from './Virtualized';
+import PageContext from './Context';
 
 const routers = [
   {
@@ -96,6 +97,12 @@ const routers = [
     path: '/virtualized',
     name: '虚拟列表',
     component: PageVirtualized,
+    exact: true
+  },
+  {
+    path: '/context',
+    name: 'context',
+    component: PageContext,
     exact: true
   },
 ];
