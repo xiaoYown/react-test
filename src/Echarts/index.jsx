@@ -1,16 +1,18 @@
 import React from "react";
-import AutoHoverBar from './AutoHoverBar';
-import AutoHoverPie from './AutoHoverPie';
-import AutoHoverLine from './AutoHoverLine';
+// import AutoHoverBar from './AutoHoverBar';
+// import AutoHoverPie from './AutoHoverPie';
+// import AutoHoverLine from './AutoHoverLine';
+import PercentPie from './PercentPie';
 
 class PageEcahrts extends React.Component {
   render() {
     return <div>
-      <AutoHoverLine />
+      {/* <AutoHoverLine />
       <br/>
       <AutoHoverBar />
       <br/>
-      <AutoHoverPie />
+      <AutoHoverPie /> */}
+      <PercentPie />
     </div>;
   }
 }

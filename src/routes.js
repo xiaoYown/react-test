@@ -13,6 +13,7 @@ import PageAlgorithm from './Algorithm';
 import PageMemoryLeak from './MemoryLeak';
 import PageVirtualized from './Virtualized';
 import PageContext from './Context';
+import PageAxisBoard from './AxisBoard';
 
 const routers = [
   {
@@ -103,6 +104,12 @@ const routers = [
     path: '/context',
     name: 'context',
     component: PageContext,
+    exact: true
+  },
+  {
+    path: '/axis-board',
+    name: '坐标系',
+    component: PageAxisBoard,
     exact: true
   },
 ];
