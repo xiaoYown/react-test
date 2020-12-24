@@ -1,9 +1,9 @@
 import PageIndex from './Index';
 import PageHome from './Home';
-import PageFlv from './Flv';
+// import PageFlv from './Flv';
 import PageDataset from './Dataset';
-import PageL7 from './L7';
-import PageEcharts from './Echarts';
+// import PageL7 from './L7';
+// import PageEcharts from './Echarts';
 import PageUserAgent from './UserAgent';
 import PageTest from './Test';
 import PageTheme from './Theme';
@@ -14,6 +14,7 @@ import PageMemoryLeak from './MemoryLeak';
 import PageVirtualized from './Virtualized';
 import PageContext from './Context';
 import PageAxisBoard from './AxisBoard';
+import PageD3Zoom from './D3Zoom';
 
 const routers = [
   {
@@ -28,30 +29,30 @@ const routers = [
     component: PageHome,
     exact: true
   },
-  {
-    path: '/flv',
-    name: 'flv',
-    component: PageFlv,
-    exact: true
-  },
+  // {
+  //   path: '/flv',
+  //   name: 'flv',
+  //   component: PageFlv,
+  //   exact: true
+  // },
   {
     path: '/dataset',
     name: 'antv dataset',
     component: PageDataset,
     exact: true
   },
-  {
-    path: '/l7',
-    name: 'l7',
-    component: PageL7,
-    exact: true
-  },
-  {
-    path: '/echarts',
-    name: 'echarts',
-    component: PageEcharts,
-    exact: true
-  },
+  // {
+  //   path: '/l7',
+  //   name: 'l7',
+  //   component: PageL7,
+  //   exact: true
+  // },
+  // {
+  //   path: '/echarts',
+  //   name: 'echarts',
+  //   component: PageEcharts,
+  //   exact: true
+  // },
   {
     path: '/user-agent',
     name: 'agent',
@@ -110,6 +111,12 @@ const routers = [
     path: '/axis-board',
     name: '坐标系',
     component: PageAxisBoard,
+    exact: true
+  },
+  {
+    path: '/d3-zoom',
+    name: 'd3-zoom',
+    component: PageD3Zoom,
     exact: true
   },
 ];

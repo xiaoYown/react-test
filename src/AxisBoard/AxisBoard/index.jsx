@@ -5,28 +5,38 @@ class PageAxis extends React.Component {
   constructor(props) {
     super(props);
   }
-  state = {
-    scale: 1
-  }
+  state = {}
   static getDerivedStateFromProps (props) {
     const { width, height, scale } = props;
     return {
-      deriveStyle: {
+      containerStyle: {
+        width: width * scale + 'px',
+      },
+      canvasStyle: {
         width: width * scale + 'px',
         height: height * scale + 'px',
-        backgroundColor: 'blue'
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
       }
     };
   }
   componentDidMount() {
   }
   render() {
-    const { deriveStyle } = this.state;
-    return <div className="xvf-axis-board">
+    const {
+      canvasStyle,
+      containerStyle
+    } = this.state;
+
+    return <div className="xvd-free-axis-board">
       <div
-        className="xvf-axis-board-canvas"
-        style={deriveStyle}
-      ></div>
+        className="xvd-free-axis-board-container"
+        style={containerStyle}
+      >
+        <div
+          className="xvd-free-axis-board-canvas"
+          style={canvasStyle}
+        ></div>
+      </div>
     </div>
   }
 };
