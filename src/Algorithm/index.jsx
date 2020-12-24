@@ -14,19 +14,19 @@ import memoize from "memoize-one";
 //   }
 // }
 
-const calNative = (n, i) => {
-  console.log(n)
-  return n + i + 1
-}
+// const calNative = (n, i) => {
+//   console.log(n)
+//   return n + i + 1
+// }
 
-const calOpt = memoize(calNative)
+// const calOpt = memoize(calNative)
 
-calOpt(1, 1)
-calOpt(1, 1)
-calOpt(2, 1)
-calOpt(2, 1)
-calOpt(3, 1)
-calOpt(3, 1)
+// calOpt(1, 1)
+// calOpt(1, 1)
+// calOpt(2, 1)
+// calOpt(2, 1)
+// calOpt(3, 1)
+// calOpt(3, 1)
 
 function fib(n) {
   if (typeof n !== 'number') {
