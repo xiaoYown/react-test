@@ -1,33 +1,49 @@
 import './index.less';
-import React from 'react';
+import React, { createRef } from 'react';
+import zoomListener from './zoomListener';
 
 class PageAxis extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      zoomBox: createRef()
+    }
   }
-  state = {}
   static getDerivedStateFromProps (props) {
-    const { width, height, scale } = props;
+    const { width, height, zoom } = props;
     return {
       containerStyle: {
-        width: width * scale + 'px',
+        width: width * zoom + 'px',
       },
       canvasStyle: {
-        width: width * scale + 'px',
-        height: height * scale + 'px',
+        width: width * zoom + 'px',
+        height: height * zoom + 'px',
         backgroundColor: 'rgba(0, 0, 0, 0.5)'
       }
     };
   }
   componentDidMount() {
+    const { zoomBox } = this.state;
+    console.log(zoomBox.current)
+    this.zoomListener = zoomListener({
+      ele: zoomBox.current,
+      scale: res => console.log(res)
+    })
+  }
+  componentWillUnmount () {
+    this.zoomListener.destroy();
   }
   render() {
     const {
+      zoomBox,
       canvasStyle,
       containerStyle
     } = this.state;
 
-    return <div className="xvd-free-axis-board">
+    return <div
+      ref={zoomBox}
+      className="xvd-free-axis-board"
+    >
       <div
         className="xvd-free-axis-board-container"
         style={containerStyle}

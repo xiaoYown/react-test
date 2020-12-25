@@ -8,23 +8,23 @@ class PageAxisBoard extends React.Component {
     super(props);
   }
   state = {
-    scale: 1
+    zoom: 1
   }
   render() {
-    const { scale } = this.state;
+    const { zoom } = this.state;
     return <div style={{ paddingTop: '20px' }}>
       <div className="page-axis-board">
         <AxisBoard
           width={800}
           height={600}
-          scale={scale}
+          zoom={zoom}
         />
       </div>
       <AxisScale
         step={0.02}
-        scale={scale}
-        onChange={scale => {
-          this.setState({ scale });
+        zoom={zoom}
+        onChange={zoom => {
+          this.setState({ zoom });
         }}
       />
     </div>
