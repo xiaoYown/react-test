@@ -1,4 +1,6 @@
-const calX = (val) => {
+const cal = x => 1 / x
+
+const calX = (val, inc) => {
   
 }
 
