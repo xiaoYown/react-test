@@ -1,0 +1,9 @@
+.bb-siderbar-node {
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+
+}
+.bb-siderbar-node:hover {
+  color: #888888;
+}

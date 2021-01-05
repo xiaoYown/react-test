@@ -1,2 +1,10 @@
 .bb-display-view {
+  position: fixed;
+  top: 60px;
+  right: 240px;
+  bottom: 0;
+  left: 60px;
+  background-color: #efefef;
+  overflow-x: auto;
+  overflow-y: auto;
 }

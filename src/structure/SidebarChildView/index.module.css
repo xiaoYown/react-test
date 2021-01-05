@@ -1,0 +1,10 @@
+.bb-sidebar-child {
+  position: fixed;
+  top: 64px;
+  bottom: 4px;
+  left: 64px;
+  width: 200px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border: 1px solid #888888;
+}

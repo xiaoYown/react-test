@@ -1,0 +1,9 @@
+.bb-editpanel-view {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  right: 0;
+  width: 240px;
+  border-left: 1px solid #888888;
+  box-sizing: border-box;
+}
