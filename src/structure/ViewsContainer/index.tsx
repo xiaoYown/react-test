@@ -7,14 +7,16 @@ import SidebarChildView from '../SidebarChildView';
 import DisplayView from '../DisplayView';
 import EditPanelView from '../EditPanelView';
 
-function ViewsContainer () {
-  return <div className={styles['bb-view-container']}>
-    <ToolbarView />
-    <SidebarView />
-    <SidebarChildView />
-    <DisplayView />
-    <EditPanelView />
-  </div>
+class ViewsContainer extends React.Component {
+  render () {
+    return <div className={styles['bb-view-container']}>
+      <ToolbarView />
+      <SidebarView />
+      <SidebarChildView />
+      <DisplayView />
+      <EditPanelView />
+    </div>
+  }
 }
 
 export default ViewsContainer;

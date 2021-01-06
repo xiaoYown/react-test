@@ -1,5 +1,3 @@
-const extensions = [];
+import { Extension } from '../../libs/base/extension';
 
-export {
-  extensions
-};
+export const elementExtensions: Extension[] = [];
