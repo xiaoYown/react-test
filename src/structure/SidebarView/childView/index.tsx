@@ -15,5 +15,7 @@ interface Props {
 // TODO: props 校验
 export const ChildViewComponent = (props: Props) => {
   const Component = ViewsComponets[props.view];
-  return <Component />
+  return <div style={{ padding: '6px' }}>
+    <Component />
+  </div>
 }

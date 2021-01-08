@@ -1,0 +1,63 @@
+{
+  "data": [
+    {
+      "x": "家具家电",
+      "y": 654
+    },
+    {
+      "x": "粮油副食",
+      "y": 506
+    },
+    {
+      "x": "美容洗护",
+      "y": 696
+    },
+    {
+      "x": "母婴用品",
+      "y": 157
+    },
+    {
+      "x": "进口食品",
+      "y": 21
+    },
+    {
+      "x": "食品饮料",
+      "y": 104
+    },
+    {
+      "x": "家庭清洁",
+      "y": 531
+    }
+  ],
+  "config": {
+    "title": {
+      "visible": true,
+      "text": "柱状图"
+    },
+    "description": {
+      "visible": true,
+      "text": "一个简单的柱状图"
+    },
+    "legend": {
+      "flipPage": false
+    },
+    "xAxis": {
+      "title": {
+        "visible": false
+      }
+    },
+    "yAxis": {
+      "title": {
+        "visible": false
+      }
+    },
+    "forceFit": false,
+    "width": 560,
+    "height": 376,
+    "xField": "x",
+    "yField": "y",
+    "color": [
+      "#5B8FF9"
+    ]
+  }
+}

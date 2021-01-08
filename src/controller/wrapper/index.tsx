@@ -1,0 +1,61 @@
+import React from 'react';
+import { observer } from 'mobx-react';
+import { AnyComponent } from '../../@types';
+import { rootCache, extensionsCache } from '../store/state';
+
+import root from '../../libs/base/root';
+
+export const withRoot = (Component: AnyComponent) => {
+  return (props: any) => <Component {...props} root={root} />
+}
+
+export const withElementExtensions = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component
+      {...props.oldProps}
+      root={root}
+      elementExtensions={props.rootCache.elementExtensions}
+    />
+  });
+  return (props: any) => <Observer oldProps={props} rootCache={rootCache} />
+}
+export const withElementExtensionsNoObserver = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component
+      {...props}
+      extensions={extensionsCache}
+    />
+  });
+  return (props: any) => <Observer {...props} />
+}
+export const withSidebarChild = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component
+      {...props.oldProps}
+      visible={props.rootCache.sideChildShow}
+      options={props.rootCache.sideChildOptions}
+    />
+  });
+  return (props: any) => <Observer oldProps={props} rootCache={rootCache} />
+}
+
+export const withElementList = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component
+      {...props.oldProps}
+      elementList={props.rootCache.remoteElements}
+    />
+  });
+  return (props: any) => <Observer oldProps={props} rootCache={rootCache} />
+}
+export const withElement = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component options={props.options}/>
+  });
+  return (props: any) => <Observer options={rootCache.remoteElementsData[props.id]} />
+}

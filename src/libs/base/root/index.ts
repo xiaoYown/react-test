@@ -5,14 +5,16 @@ class Root {
   public init () {
     initElementExtensions(elementExtensions);
   }
-  public insert (payload: any) {
+  public registerElementExtensions (payload: any) {
     appendElementExtensions(payload);
     // TODO:
   }
-  public registerElementExtensions (payload: any) {
+  public insertElement (payload: any) {
   }
 }
 
 const root = new Root();
+
+root.init();
 
 export default root;

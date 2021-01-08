@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './index.module.css';
 
-import { withSidebarChild } from '../../controller/wapper';
+import { withSidebarChild } from '../../controller/wrapper';
 
 import { MouseBus, MouseEvents, ModalBus, ModalEvents } from '../../controller';
 

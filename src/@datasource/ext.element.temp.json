@@ -1,0 +1,22 @@
+{
+  "id": "",
+  "name": "",
+  "createTime": "",
+  "updateTime": "",
+  "extensionType": "element",
+  "extension": "",
+  "version": "",
+  "layout": {
+    "position": "absolute",
+    "reference": "top|left",
+    "top": 0,
+    "bottom": 0,
+    "right": 0,
+    "left": 0,
+    "width": 600,
+    "height": 400,
+    "rotation": 0
+  },
+  "resource": {
+  }
+}
