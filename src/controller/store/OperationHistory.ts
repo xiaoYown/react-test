@@ -2,12 +2,14 @@
 interface Opt {
   action: 'insert'|'delete'|'update'
   effect: 'report'|'element'
+  id: string,
   data: any
 }
 
 function readBeforeData (opts: Opt[]) {
   opts.map((item: Opt) => {
     let opt:Opt = {
+      id: item.id,
       action: 'update',
       effect: item.effect,
       data: {}

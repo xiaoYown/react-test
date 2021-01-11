@@ -4,6 +4,7 @@
   bottom: 0;
   right: 0;
   width: 240px;
+  padding: 0 3px;
   border-left: 1px solid #888888;
   box-sizing: border-box;
 }

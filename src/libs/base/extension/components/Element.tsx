@@ -110,6 +110,7 @@ class _ElementExtension extends React.Component<Props> {
   render () {
     const { options } = this.props;
     const { id, layout } = options;
+    console.log(options.resource)
     return <ElementLayout
       id={id}
       layout={layout}
@@ -117,5 +118,15 @@ class _ElementExtension extends React.Component<Props> {
     />
   }
 }
+// function _ElementExtension (props: Props) {
+//   const { options } = props;
+//   const { id, layout } = options;
+//   console.log(options.resource)
+//   return <ElementLayout
+//     id={id}
+//     layout={layout}
+//     render={() => <ElementRender {...options} />}
+//   />
+// }
 
 export const ElementExtension = withElement(_ElementExtension);

@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import { OperationHistory } from './OperationHistory';
 import { createElementExtension } from '../../@datasource/creator';
+import { updatePosValue } from '../../utils';
 
 import reportData from '../../@datasource/report.json';
 
@@ -14,10 +15,13 @@ interface rootCache {
   sideChildShow: boolean
   sideChildOptions: any
   elementExtensions: any[]
+
   remoteReportStatus: 'NONE'|'WAIT'|'SUCCESS'|'FAIL'
   remoteReportData: any
   remoteElements: any[]
   remoteElementsData: any
+
+  selectedIds: string[]
 }
 
 export const rootCache: rootCache = observable({
@@ -30,6 +34,8 @@ export const rootCache: rootCache = observable({
   remoteReportData: {},
   remoteElements: [], // 用作列表渲染
   remoteElementsData: {}, // 用作单对象具象渲染
+
+  selectedIds: [], // 当前所有选中对象 id
 });
 
 // TODO: any 后续处理
@@ -72,6 +78,7 @@ export const insertElement = action((payload: any) => {
   const data = createElementExtension(payload);
   rootCache.remoteElements = [...rootCache.remoteElements, data.id];
   rootCache.remoteElementsData[data.id] = observable(data);
+  rootCache.selectedIds = [data.id];
   // TODO: 操作记录处理
   // operationHistory.do([
   //   {
@@ -84,6 +91,19 @@ export const insertElement = action((payload: any) => {
 export const removeElement = action((payload: any) => {
 });
 export const updateElement = action((payload: any) => {
+  console.log(payload)
+  const { id, data } = payload;
+  operationHistory.do([
+    {
+      id,
+      action: 'update',
+      effect: 'element',
+      data: JSON.parse(JSON.stringify(payload.data))
+    }
+  ]);
+  for (let attrKey in data) {
+    updatePosValue(rootCache.remoteElementsData[id], attrKey, data[attrKey]);
+  }
 });
 
 // 前进|后退

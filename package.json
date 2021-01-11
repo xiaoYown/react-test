@@ -158,7 +158,21 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "mobx"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": "css"
+        }
+      ]
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.3",
+    "babel-preset-mobx": "^2.0.0"
   }
 }

@@ -30,14 +30,6 @@
     }
   ],
   "config": {
-    "title": {
-      "visible": true,
-      "text": "柱状图"
-    },
-    "description": {
-      "visible": true,
-      "text": "一个简单的柱状图"
-    },
     "legend": {
       "flipPage": false
     },
@@ -50,6 +42,9 @@
       "title": {
         "visible": false
       }
+    },
+    "label": {
+      "visible": true
     },
     "forceFit": false,
     "width": 560,

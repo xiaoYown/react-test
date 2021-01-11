@@ -1,4 +1,4 @@
-import EditPanel from '../edit-panel';
+import { EditPanel } from '../edit-panel';
 import { ElementEventBus } from '../../../controller';
 
 interface Props {

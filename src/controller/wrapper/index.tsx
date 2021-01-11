@@ -55,7 +55,28 @@ export const withElementList = (Component: AnyComponent) => {
 export const withElement = (Component: AnyComponent) => {
   // TODO: any
   const Observer = observer((props: any) => {
-    return <Component options={props.options}/>
+    return <Component {...props.oldProps} options={props.options}/>
   });
-  return (props: any) => <Observer options={rootCache.remoteElementsData[props.id]} />
+  return (props: any) => <Observer oldProps={props} options={rootCache.remoteElementsData[props.id]} />
+}
+export const withElementAndExtension = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component
+      {...props.oldProps}
+      options={props.options}
+      extensions={extensionsCache}
+    />
+  });
+  return (props: any) => <Observer oldProps={props} options={rootCache.remoteElementsData[props.id]} />
+}
+export const withSelectedIds = (Component: AnyComponent) => {
+  // TODO: any
+  const Observer = observer((props: any) => {
+    return <Component
+      {...props.oldProps}
+      selectedIds={props.rootCache.selectedIds}
+    />
+  });
+  return (props: any) => <Observer oldProps={props} rootCache={rootCache} />
 }

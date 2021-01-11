@@ -1,11 +1,17 @@
 import React from 'react';
 import styles from './index.module.css';
 
-function EditPanelView() {
+import { withSelectedIds } from '../../controller/wrapper';
+import { EditPanelTree } from '../../libs/base/edit-panel/components';
+
+function EditPanelView(props: any) {
   return (
     <div className={styles['bb-editpanel-view']}>
+      {
+        props.selectedIds.length === 1 ? <EditPanelTree id={props.selectedIds[0]} /> : null
+      }
     </div>
   );
 }
 
-export default EditPanelView;
+export default withSelectedIds(EditPanelView);
