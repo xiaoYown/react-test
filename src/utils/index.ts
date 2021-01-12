@@ -22,6 +22,7 @@ export function updatePosValue (data: any, pos: string, value: any) {
   let keys: string[] = pos.split('.');
   let current: any = data;
   let key: string = '';
+
   while (keys.length > 0) {
     key = (keys.shift() as string);
     if (!isObject(current[key])) {

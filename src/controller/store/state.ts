@@ -11,6 +11,8 @@ export const itemListCache = {};
 
 export const extensionsCache: any = {}; // 不监听
 
+export const remoteElementsData: any = {};
+
 interface rootCache {
   sideChildShow: boolean
   sideChildOptions: any
@@ -19,7 +21,6 @@ interface rootCache {
   remoteReportStatus: 'NONE'|'WAIT'|'SUCCESS'|'FAIL'
   remoteReportData: any
   remoteElements: any[]
-  remoteElementsData: any
 
   selectedIds: string[]
 }
@@ -33,7 +34,6 @@ export const rootCache: rootCache = observable({
   remoteReportStatus: 'NONE',
   remoteReportData: {},
   remoteElements: [], // 用作列表渲染
-  remoteElementsData: {}, // 用作单对象具象渲染
 
   selectedIds: [], // 当前所有选中对象 id
 });
@@ -77,7 +77,7 @@ setRemoteData(reportData);
 export const insertElement = action((payload: any) => {
   const data = createElementExtension(payload);
   rootCache.remoteElements = [...rootCache.remoteElements, data.id];
-  rootCache.remoteElementsData[data.id] = observable(data);
+  remoteElementsData[data.id] = observable(data);
   rootCache.selectedIds = [data.id];
   // TODO: 操作记录处理
   // operationHistory.do([
@@ -102,7 +102,7 @@ export const updateElement = action((payload: any) => {
     }
   ]);
   for (let attrKey in data) {
-    updatePosValue(rootCache.remoteElementsData[id], attrKey, data[attrKey]);
+    updatePosValue(remoteElementsData[id], attrKey, data[attrKey]);
   }
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { AnyComponent } from '../../@types';
-import { rootCache, extensionsCache } from '../store/state';
+import { rootCache, extensionsCache, remoteElementsData } from '../store/state';
 
 import root from '../../libs/base/root';
 
@@ -57,18 +57,19 @@ export const withElement = (Component: AnyComponent) => {
   const Observer = observer((props: any) => {
     return <Component {...props.oldProps} options={props.options}/>
   });
-  return (props: any) => <Observer oldProps={props} options={rootCache.remoteElementsData[props.id]} />
+  return (props: any) => <Observer oldProps={props} options={remoteElementsData[props.id]} />
 }
 export const withElementAndExtension = (Component: AnyComponent) => {
   // TODO: any
   const Observer = observer((props: any) => {
+    console.log('-------------', props.options)
     return <Component
       {...props.oldProps}
       options={props.options}
       extensions={extensionsCache}
     />
   });
-  return (props: any) => <Observer oldProps={props} options={rootCache.remoteElementsData[props.id]} />
+  return (props: any) => <Observer oldProps={props} options={remoteElementsData[props.id]} />
 }
 export const withSelectedIds = (Component: AnyComponent) => {
   // TODO: any

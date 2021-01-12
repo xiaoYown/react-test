@@ -1,3 +1,4 @@
+import React from 'react';
 import Insert from './Insert';
 
 export enum views {
