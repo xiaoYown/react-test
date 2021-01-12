@@ -13,7 +13,7 @@ export const extensionsCache: any = {}; // 不监听
 
 export const remoteElementsData: any = {};
 
-interface rootCache {
+interface rootCacheProps {
   sideChildShow: boolean
   sideChildOptions: any
   elementExtensions: any[]
@@ -25,7 +25,7 @@ interface rootCache {
   selectedIds: string[]
 }
 
-export const rootCache: rootCache = observable({
+export const rootCache: rootCacheProps = observable({
   sideChildShow: false,
   sideChildOptions: null,
 
@@ -39,31 +39,31 @@ export const rootCache: rootCache = observable({
 });
 
 // TODO: any 后续处理
-export const openSideChild = action((options: any) => {
+export const openSideChild = action('[side-child]: open', (options: any) => {
   rootCache.sideChildOptions = options;
   rootCache.sideChildShow = true;
 });
 
-export const closeSideChild = action(() => {
+export const closeSideChild = action('[side-child]: close', () => {
   rootCache.sideChildShow = false;
 });
 
-export const initElementExtensions = action((payload: any[]) => {
+export const initElementExtensions = action('[extension-element]: init', (payload: any[]) => {
   payload.forEach(item => {
     extensionsCache[item.id] = item;
   });
   rootCache.elementExtensions = payload;
 });
-export const appendElementExtensions = action((payload: any) => {
+export const appendElementExtensions = action('[extension-element]: append', (payload: any) => {
   rootCache.elementExtensions.push(payload);
-  extensionsCache[payload.id] = observable(payload);
+  extensionsCache[payload.id] = payload;
 });
 
 // 远程数据渲染
-export const setRemoteData = action((payload: any) => {
+export const setRemoteData = action('Init remote data', (payload: any) => {
   operationHistory.reset();
 
-  const { elements } = payload;
+  // const { elements } = payload;
   delete payload.elements;
 
   rootCache.remoteReportData = payload;
@@ -74,7 +74,7 @@ export const setRemoteData = action((payload: any) => {
 setRemoteData(reportData);
 
 // element 操作
-export const insertElement = action((payload: any) => {
+export const insertElement = action('[extension-element]: insert element', (payload: any) => {
   const data = createElementExtension(payload);
   rootCache.remoteElements = [...rootCache.remoteElements, data.id];
   remoteElementsData[data.id] = observable(data);
@@ -90,7 +90,7 @@ export const insertElement = action((payload: any) => {
 });
 export const removeElement = action((payload: any) => {
 });
-export const updateElement = action((payload: any) => {
+export const updateElement = action('[extension-element]: update element', (payload: any) => {
   console.log(payload)
   const { id, data } = payload;
   operationHistory.do([

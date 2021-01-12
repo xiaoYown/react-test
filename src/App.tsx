@@ -5,7 +5,6 @@ import syntheticEvent from './libs/synthetic-event';
 
 import ViewsContainer from './structure/ViewsContainer';
 
-console.log(syntheticEvent);
 
 function App() {
   return (

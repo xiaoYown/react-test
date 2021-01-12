@@ -106,17 +106,15 @@ type Props = {
   options: ElementRenderProps
 }
 
-class _ElementExtension extends React.Component<Props> {
-  render () {
-    const { options } = this.props;
-    const { id, layout } = options;
-    console.log(options.resource)
-    return <ElementLayout
-      id={id}
-      layout={layout}
-      render={() => <ElementRender {...options} />}
-    />
-  }
+function _ElementExtension (props: Props) {
+  const { options } = props;
+  const { id, layout } = options;
+  console.log('options.resource')
+  return <ElementLayout
+    id={id}
+    layout={layout}
+    render={() => <ElementRender {...options} />}
+  />
 }
 // function _ElementExtension (props: Props) {
 //   const { options } = props;

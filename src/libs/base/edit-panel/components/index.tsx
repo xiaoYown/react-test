@@ -4,6 +4,7 @@ import { NodeProps } from '../index';
 import { AnyComponent } from '../../../../@types';
 import { withElementAndExtension } from '../../../../controller/wrapper';
 import { extractPosValue } from '../../../../utils';
+import { withElement } from '../../../../controller/wrapper';
 
 import { Switch } from 'antd';
 
@@ -47,6 +48,10 @@ interface EditPanelTreeProps {
   extensions: any
 }
 
+const ElementDefault = withElement((props: any) => {
+  return <div>{JSON.stringify(props.options.resource, null, 2)}</div>
+})
+
 export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
   state: any = {}
 
@@ -60,7 +65,6 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
   render () {
     const { children } = this.state;
     const { options, id } = this.props;
-    console.log('options.resource')
     return !options ? null : <>
       {
         children.map((item: NodeProps) => {
@@ -72,9 +76,9 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
           />
         })
       }
-      <pre style={{ fontSize: '10px' }}>
-        { JSON.stringify(options.resource, null, 2) }
-      </pre>
+      {/* <pre style={{ fontSize: '10px' }}>
+        <ElementDefault id={id} />
+      </pre> */}
     </>
   }
 }
