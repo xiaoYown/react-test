@@ -35,7 +35,7 @@ export const withSidebarChild = (Component: AnyComponent) => {
   const Observer = observer((props: any) => {
     return <Component
       {...props.oldProps}
-      visible={props.rootCache.sideChildShow}
+      view={props.rootCache.sideChildShow}
       options={props.rootCache.sideChildOptions}
     />
   });

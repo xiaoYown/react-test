@@ -65,6 +65,9 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
     const { children } = this.state;
     const { options, id } = this.props;
     return !options ? null : <>
+      <h4>公共属性</h4>
+      TODO:
+      <h4>私有属性</h4>
       {
         children.map((item: NodeProps) => {
           return <EditPanelNode

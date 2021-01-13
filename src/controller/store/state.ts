@@ -11,7 +11,7 @@ export const extensionsCache: any = {}; // 不监听
 export const remoteElementsData: any = {};
 
 interface rootCacheProps {
-  sideChildShow: boolean
+  sideChildShow: string
   sideChildOptions: any
   elementExtensions: any[]
 
@@ -23,7 +23,7 @@ interface rootCacheProps {
 }
 
 export const rootCache: rootCacheProps = observable({
-  sideChildShow: false,
+  sideChildShow: '',
   sideChildOptions: null,
 
   elementExtensions: <any[]> [],
@@ -38,11 +38,11 @@ export const rootCache: rootCacheProps = observable({
 // TODO: any 后续处理
 export const openSideChild = action('[side-child]: open', (options: any) => {
   rootCache.sideChildOptions = options;
-  rootCache.sideChildShow = true;
+  rootCache.sideChildShow = options.view;
 });
 
 export const closeSideChild = action('[side-child]: close', () => {
-  rootCache.sideChildShow = false;
+  rootCache.sideChildShow = '';
 });
 
 export const initElementExtensions = action('[extension-element]: init', (payload: any[]) => {

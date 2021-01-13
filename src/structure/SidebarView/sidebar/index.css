@@ -7,3 +7,6 @@
 .bb-siderbar-node:hover {
   color: #888888;
 }
+.bb-siderbar-node.s-active {
+  color: red;
+}

@@ -2,11 +2,13 @@ import React from 'react';
 import Insert from './Insert';
 
 export enum views {
-  insert = 'insert'
+  insert = 'insert',
+  insert2 = 'insert2'
 }
 
 export const ViewsComponets = {
-  [views.insert]: Insert
+  [views.insert]: Insert,
+  [views.insert2]: Insert
 };
 
 interface Props {

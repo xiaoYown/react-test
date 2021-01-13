@@ -1,7 +1,10 @@
 import React from 'react';
-import styles from './index.module.css';
+import './index.css';
 
 import { ModalBus, ModalEvents, MouseBus, MouseEvents } from '../../../controller';
+import { sidebarList } from '../setting';
+import { withSidebarChild } from '../../../controller/wrapper';
+import SidebarView from '..';
 
 export type AnyComponent<P = any> =
 | (new (props: P) => React.Component)
@@ -13,6 +16,7 @@ export interface SideNodeProps {
   icon: string;
   title: string;
   event: string;
+  active: boolean;
 }
 
 class SideNodeItem extends React.Component<SideNodeProps> {
@@ -21,12 +25,17 @@ class SideNodeItem extends React.Component<SideNodeProps> {
   }
   selectSideNode = (e: React.MouseEvent) => {
     e.stopPropagation();
-    ModalBus.emit(ModalEvents.OpenSideChild, this.props);
+    if (this.props.active) {
+      ModalBus.emit(ModalEvents.CloseSideChild);
+    } else {
+      ModalBus.emit(ModalEvents.OpenSideChild, this.props);
+    }
   }
   render () {
-    const { title } = this.props;
+    const { title, active } = this.props;
+    const className = `bb-siderbar-node ${(active ? 's-active' : 's-normal')}`;
     return <div
-      className={styles['bb-siderbar-node']}
+      className={className}
       onClick={this.selectSideNode}
       title={title}
     >{ title }</div>
@@ -37,26 +46,29 @@ class Sidebar {
 
   private options: SideNodeProps[] = []
 
-  public register(node: SideNodeProps) {
-    this.options.push(node);
+  public register(nodes: SideNodeProps[]) {
+    this.options = nodes;
   }
 
   public init(Component: AnyComponent) {
     const { options } = this;
-    return class SidebarView extends React.Component {
-      render () {
-        return <Component
-          render={() => {
-            return <>
-              {
-                options.map((item: SideNodeProps) => <SideNodeItem {...item} />)
-              }
-            </>
-          }}
-        />
-      }
+    const SidebarView = (props: any) => {
+      console.log(props)
+      return <Component
+        render={() => {
+          return <>
+            {
+              options.map((item: SideNodeProps) => <SideNodeItem {...item} active={item.key == props.view} />)
+            }
+          </>
+        }}
+      />
     }
+    return withSidebarChild(SidebarView);
   }
 }
 
-export default new Sidebar();
+const sidebar = new Sidebar();
+sidebar.register(sidebarList);
+
+export default sidebar;
