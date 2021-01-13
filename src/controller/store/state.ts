@@ -7,10 +7,7 @@ import reportData from '../../@datasource/report.json';
 
 const operationHistory = new OperationHistory();
 
-export const itemListCache = {};
-
 export const extensionsCache: any = {}; // 不监听
-
 export const remoteElementsData: any = {};
 
 interface rootCacheProps {
@@ -91,7 +88,6 @@ export const insertElement = action('[extension-element]: insert element', (payl
 export const removeElement = action((payload: any) => {
 });
 export const updateElement = action('[extension-element]: update element', (payload: any) => {
-  console.log(payload)
   const { id, data } = payload;
   operationHistory.do([
     {

@@ -17,7 +17,6 @@ class PanelSwitch extends React.Component<NodeProps> {
   render () {
     const { resource, pos, name } = this.props;
     const checked = extractPosValue(resource, pos);
-    console.log(checked)
     return <>
       <h5 className={styles['bb-edit-panel-item-title']}>{ name }</h5>
       <Switch size="small" checked={checked} onClick={this.onSave} />

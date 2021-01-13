@@ -55,7 +55,8 @@ export const withElementList = (Component: AnyComponent) => {
 export const withElement = (Component: AnyComponent) => {
   // TODO: any
   const Observer = observer((props: any) => {
-    console.log(props.options)
+    // TODO: 后续需处理
+    JSON.stringify(props.options);
     return <Component {...props.oldProps} options={props.options}/>
   });
   return (props: any) => <Observer oldProps={props} options={remoteElementsData[props.id]} />
@@ -63,6 +64,8 @@ export const withElement = (Component: AnyComponent) => {
 export const withElementAndExtension = (Component: AnyComponent) => {
   // TODO: any
   const Observer = observer((props: any) => {
+    // TODO: 后续需处理
+    JSON.stringify(props.options);
     return <Component
       {...props.oldProps}
       options={props.options}

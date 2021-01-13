@@ -13,7 +13,8 @@ export class ExtensionWrite {
   }
 
   mounted = () => {}
-  updating = () => {}
+  update = (options: any) => {}
+  beforeDestroy = () => {}
   destroy = () => {}
 }
 

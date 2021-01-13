@@ -1,9 +1,13 @@
 import React, { createRef } from 'react';
-import { withElement, withElementExtensionsNoObserver } from '../../../../controller/wrapper';
+import { withElement, withElementAndExtension } from '../../../../controller/wrapper';
+import ErrorBoundary from '../../error/ErrorBoundary';
+
+function clone (data: any) {
+  return JSON.parse(JSON.stringify(data));
+}
 
 interface LayoutProps {
   id: string
-  render: () => {}
   layout: {
     position: string
     reference: string
@@ -66,7 +70,7 @@ class ElementLayout extends React.Component<LayoutProps, LayoutState> {
     return <div
       id={this.props.id}
       style={derivedStyle}
-    >{ didMount ? this.props.render() : null }</div>
+    >{ didMount ? this.props.children : null }</div>
   }
 }
 
@@ -75,56 +79,48 @@ interface ElementRenderProps {
   name: string
   layout: any
   extension: string
-  extensions: any
   resource: any
 }
+type Props = {
+  extensions: any
+  options: ElementRenderProps
+}
 
-class _ElementRender extends React.Component<ElementRenderProps> {
+class _ElementRender extends React.Component<Props> {
   elementInstance: any = null
 
   componentDidMount () {
-    const { id, extension, extensions, resource } = this.props;
+    console.log(this.props)
+    const { options, extensions } = this.props;
+    const { extension } = options;
     const Write = extensions[extension].write;
-    this.elementInstance = new Write({
-      id,
-      config: resource.config,
-      data: resource.data
-    });
+    this.elementInstance = new Write(clone(options));
     this.elementInstance.mounted();
   }
-  shouldComponentUpdate () {
+  shouldComponentUpdate (nextProps: any) {
+    this.elementInstance.update(nextProps.options);
     return false
   }
   render () {
-    return <div></div>
+    return null;
   }
 }
 
-const ElementRender = withElementExtensionsNoObserver(_ElementRender);
+const ElementRender = withElementAndExtension(_ElementRender);
 
-type Props = {
-  options: ElementRenderProps
-}
 
 function _ElementExtension (props: Props) {
   const { options } = props;
   const { id, layout } = options;
-  console.log('options.resource')
+
   return <ElementLayout
     id={id}
     layout={layout}
-    render={() => <ElementRender {...options} />}
-  />
+  >
+    <ErrorBoundary>
+      <ElementRender id={id} />
+    </ErrorBoundary>
+  </ElementLayout>
 }
-// function _ElementExtension (props: Props) {
-//   const { options } = props;
-//   const { id, layout } = options;
-//   console.log(options.resource)
-//   return <ElementLayout
-//     id={id}
-//     layout={layout}
-//     render={() => <ElementRender {...options} />}
-//   />
-// }
 
 export const ElementExtension = withElement(_ElementExtension);

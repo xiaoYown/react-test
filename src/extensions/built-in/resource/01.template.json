@@ -44,7 +44,7 @@
       }
     },
     "label": {
-      "visible": true
+      "visible": false
     },
     "forceFit": false,
     "width": 560,

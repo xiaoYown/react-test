@@ -5,17 +5,36 @@ import template from './01.template.json';
 
 import icon from './01.svg';
 class ExtensionWrite01 extends ExtensionWrite {
+  instance: any = null
+
   mounted = () => {
-    const { id, config, data } = this.$options;
-    const _data = data.map((item: any) => ({...item}));
-    const plot = new G2Plot.Column(id, {
-      data: _data,
-      ...config,
-    });
-    plot.render();
+    this.paint(this.$options);
   }
-  updated = () => {
+  getOptions = (options: any) => {
+    const { resource } = options;
+    const { config, data } = resource;
+    const _data = data.map((item: any) => ({...item}));
+    
+    const _config = Object.assign({}, config)
+    if (!config.label.visible) {
+      delete _config.label
+    }
+    return {
+      data: _data,
+      ..._config,
+    };
+  }
+  update = (options: any) => {
     console.log('element update');
+    this.instance.update(this.getOptions(options));
+  }
+  paint = (options: any) => {
+    const el: any = document.getElementById(options.id);
+    this.instance = new G2Plot.Column(el, this.getOptions(options));
+    this.instance.render();
+  }
+  beforeDestroy = () => {
+    this.instance.destroy();
   }
 }
 
