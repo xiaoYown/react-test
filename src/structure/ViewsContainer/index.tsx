@@ -7,7 +7,7 @@ import SidebarChildView from '../SidebarChildView';
 import DisplayView from '../DisplayView';
 import EditPanelView from '../EditPanelView';
 
-import ErrorBoundary from '../../libs/base/error/ErrorBoundary';
+import ErrorBoundary from '../../libs/components/error/ErrorBoundary';
 
 import root from '../../libs/base/root';
 

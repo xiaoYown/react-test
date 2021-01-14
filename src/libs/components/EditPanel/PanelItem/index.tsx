@@ -1,10 +1,10 @@
 import styles from './index.module.css';
 import React from 'react';
-import { Col, Switch, Input, InputNumber } from 'antd';
-import ErrorBoundary from '../../../error/ErrorBoundary';
+import { Col, Switch, Input, InputNumber, Radio } from 'antd';
+import ErrorBoundary from '../../error/ErrorBoundary';
 
-import { NodeProps } from '../../index';
-import { extractPosValue } from '../../../../../utils';
+import { NodeProps } from '../../../base/edit-panel/index';
+import { extractPosValue } from '../../../../utils';
 
 class PanelSwitch extends React.Component<any> {
   onSave = (value: any) => {
@@ -53,6 +53,22 @@ class PanelInputNumber extends React.Component<any> {
   }
 }
 
+class PanelRadio extends React.Component<any> {
+  render () {
+    const { name, options, value, onChange } = this.props;
+    return <>
+      <h5 className={styles['bb-edit-panel-item-title']}>{ name }</h5>
+      <Radio.Group value={value} onChange={(e: any) => onChange(e.target.value)}>
+        {
+          options.map((item: any) => {
+            return <Radio key={item.value} value={item.value}>{item.label}</Radio>
+          })
+        }
+      </Radio.Group>
+    </>
+  }
+}
+
 export function EditPanelNode (props: NodeProps) {
   let Component: any;
   const { data, pre, pos, span, options, transvalue, onSave } = props;
@@ -61,7 +77,7 @@ export function EditPanelNode (props: NodeProps) {
 
   const save = (newValue: any) => {
     if (onSave && newValue !== value) {
-      onSave && onSave(props.id, pos, newValue);
+      onSave && onSave(props.id, newValue, data);
     }
   }
   switch (props.type) {
@@ -73,6 +89,9 @@ export function EditPanelNode (props: NodeProps) {
       break;
     case 'inputNumber':
       Component = PanelInputNumber;
+      break;
+    case 'radio':
+      Component = PanelRadio;
       break;
     default:
       Component = null;

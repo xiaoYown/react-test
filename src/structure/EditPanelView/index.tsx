@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.module.css';
 
 import { withSelectedIds } from '../../controller/wrapper';
-import { EditPanelTree } from '../../libs/base/edit-panel/components';
+import { EditPanelTree } from '../../libs/components/EditPanel';
 
 function EditPanelView(props: any) {
   return (

@@ -1,4 +1,3 @@
-import * as G2Plot from '@antv/g2plot';
 import { IfExtension, ExtensionWrite } from '../../../../libs/base/extension';
 import EditPanelText from './EditPanel';
 
@@ -13,7 +12,6 @@ class ExtensionWriteText extends ExtensionWrite {
   }
   getElement = (options: any) => {
     const { resource } = options;
-    console.log(resource)
     const el = document.createElement('div');
     el.innerHTML = resource.data;
     el.style.fontSize = resource.style.fontSize + 'px';

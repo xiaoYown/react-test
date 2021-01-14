@@ -1,6 +1,6 @@
 import React from 'react';
-import { NodeProps } from '../index';
-import { withElementAndExtension } from '../../../../controller/wrapper';
+import { NodeProps } from '../../base/edit-panel/index';
+import { withElementAndExtension } from '../../../controller/wrapper';
 import { GeneralPanel } from './General';
 import { Row } from 'antd';
 
@@ -33,7 +33,7 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
           generalChildren.map((item: NodeProps) => {
             return <EditPanelNode
               {...item}
-              key={item.pos}
+              key={(item.dataIndex || '') + item.pos}
               id={id}
               options={item.options}
               data={options}
@@ -47,7 +47,7 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
           resourceChildren.map((item: NodeProps) => {
             return <EditPanelNode
               {...item}
-              key={item.pos}
+              key={(item.dataIndex || '') + item.pos}
               id={id}
               options={item.options}
               data={options}

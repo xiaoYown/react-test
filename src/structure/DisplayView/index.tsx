@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.module.css';
 import { withElementList } from '../../controller/wrapper';
 
-import { ElementExtension } from '../../libs/base/extension/components/Element'
+import { ElementExtension } from '../../libs/components/ElementLayout/Element'
 
 function DisplayView(props: any) {
   return (

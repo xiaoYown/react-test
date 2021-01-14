@@ -94,7 +94,6 @@ export const removeElement = action((payload: any) => {
 });
 export const updateElement = action('[extension-element]: update element', (payload: any) => {
   const { id, data } = payload;
-  console.log(payload)
   operationHistory.do([
     {
       id,
