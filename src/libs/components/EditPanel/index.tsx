@@ -1,6 +1,6 @@
 import React from 'react';
-import { NodeProps } from '../index';
-import { withElementAndExtension } from '../../../../controller/wrapper';
+import { NodeProps } from '../../base/edit-panel/index';
+import { withElementAndExtension } from '../../../controller/wrapper';
 import { GeneralPanel } from './General';
 import { Row } from 'antd';
 

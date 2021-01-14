@@ -1,4 +1,3 @@
-import * as G2Plot from '@antv/g2plot';
 import { IfExtension, ExtensionWrite } from '../../../../libs/base/extension';
 import EditPanelText from './EditPanel';
 

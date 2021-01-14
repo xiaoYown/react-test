@@ -1,10 +1,10 @@
 import styles from './index.module.css';
 import React from 'react';
 import { Col, Switch, Input, InputNumber, Radio } from 'antd';
-import ErrorBoundary from '../../../error/ErrorBoundary';
+import ErrorBoundary from '../../error/ErrorBoundary';
 
-import { NodeProps } from '../../index';
-import { extractPosValue } from '../../../../../utils';
+import { NodeProps } from '../../../base/edit-panel/index';
+import { extractPosValue } from '../../../../utils';
 
 class PanelSwitch extends React.Component<any> {
   onSave = (value: any) => {

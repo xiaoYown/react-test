@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
-import { withElement, withElementAndExtension } from '../../../../controller/wrapper';
-import ErrorBoundary from '../../error/ErrorBoundary';
-import ElementSelector from '../../ElementSelector';
+import { withElement, withElementAndExtension } from '../../../controller/wrapper';
+import ErrorBoundary from '../error/ErrorBoundary';
+import ElementSelector from '../ElementSelector';
 
 function clone (data: any) {
   return JSON.parse(JSON.stringify(data));
