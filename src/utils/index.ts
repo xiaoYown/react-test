@@ -1,4 +1,4 @@
-export function extractPosValue (data: any, pos: string) {
+export function extractPosValue (data: any, pos: string): any {
   let keys: string[] = pos.split('.');
   let current: any = data;
   let key: string = '';

@@ -1,7 +1,7 @@
 .bb-edit-panel-item {
   display: flex;
   justify-content: space-between;
-  padding: 4px 0;
+  padding: 2px 4px;
 }
 .bb-edit-panel-item-title {
   width: 60px;

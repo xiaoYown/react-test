@@ -26,7 +26,9 @@ class ExtensionWrite01 extends ExtensionWrite {
   }
   update = (options: any) => {
     console.log('element update');
-    this.instance.update(this.getOptions(options));
+    this.instance.destroy();
+    this.paint(options);
+    // this.instance.update(this.getOptions(options));
   }
   paint = (options: any) => {
     const el: any = document.getElementById(options.id);
