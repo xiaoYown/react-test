@@ -50,6 +50,7 @@
     "jest-watch-typeahead": "0.6.1",
     "less": "^4.0.0",
     "less-loader": "^7.2.1",
+    "lodash": "^4.17.20",
     "mini-css-extract-plugin": "0.11.3",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
@@ -172,6 +173,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.167",
     "babel-plugin-import": "^1.13.3",
     "babel-preset-mobx": "^2.0.0"
   }

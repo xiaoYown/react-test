@@ -7,6 +7,8 @@ import SidebarChildView from '../SidebarChildView';
 import DisplayView from '../DisplayView';
 import EditPanelView from '../EditPanelView';
 
+import ErrorBoundary from '../../libs/base/error/ErrorBoundary';
+
 import root from '../../libs/base/root';
 
 class ViewsContainer extends React.Component {
@@ -15,11 +17,21 @@ class ViewsContainer extends React.Component {
   }
   render () {
     return <div className={styles['bb-view-container']}>
-      <ToolbarView />
-      <SidebarView />
-      <SidebarChildView />
-      <DisplayView />
-      <EditPanelView />
+      <ErrorBoundary>
+        <ToolbarView />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <SidebarView />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <SidebarChildView />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <DisplayView />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <EditPanelView />
+      </ErrorBoundary>
     </div>
   }
 }

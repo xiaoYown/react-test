@@ -1,6 +1,6 @@
 import styles from './index.module.css';
 import React from 'react';
-import { Col, Switch, InputNumber } from 'antd';
+import { Col, Switch, Input, InputNumber } from 'antd';
 import ErrorBoundary from '../../../error/ErrorBoundary';
 
 import { NodeProps } from '../../index';
@@ -17,6 +17,21 @@ class PanelSwitch extends React.Component<any> {
     return <>
       <h5 className={styles['bb-edit-panel-item-title']}>{ name }</h5>
       <Switch size="small" checked={value} onClick={onChange} />
+    </>
+  }
+}
+
+class PanelInput extends React.Component<any> {
+  render () {
+    const { name, value, onChange } = this.props;
+    return <>
+      <h5 className={styles['bb-edit-panel-item-title']}>{ name }</h5>
+      <Input
+        style={{ width: '120px' }}
+        size="small"
+        value={value}
+        onChange={e => onChange(e.target.value)}
+      />
     </>
   }
 }
@@ -52,6 +67,9 @@ export function EditPanelNode (props: NodeProps) {
   switch (props.type) {
     case 'switch':
       Component = PanelSwitch;
+      break;
+    case 'input':
+      Component = PanelInput;
       break;
     case 'inputNumber':
       Component = PanelInputNumber;

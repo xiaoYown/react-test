@@ -1,6 +1,6 @@
 import { updateElement } from '../../../controller/store/state';
 
-type nodeType = 'switch'|'inputNumber';
+type nodeType = 'switch'|'input'|'inputNumber';
 
 export interface NodeProps {
   id: string

@@ -13,6 +13,7 @@
     "bottom": 0,
     "right": 0,
     "left": 0,
+    "zIndex": 0,
     "width": 600,
     "height": 400,
     "rotation": 0

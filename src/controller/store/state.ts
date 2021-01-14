@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import { cloneDeep } from 'lodash';
 import { OperationHistory } from './OperationHistory';
 import { createElementExtension } from '../../@datasource/creator';
 import { updatePosValue } from '../../utils';
@@ -70,6 +71,10 @@ export const setRemoteData = action('Init remote data', (payload: any) => {
 
 setRemoteData(reportData);
 
+export const setSelected = action((payload: any) => {
+  rootCache.selectedIds = payload;
+});
+
 // element 操作
 export const insertElement = action('[extension-element]: insert element', (payload: any) => {
   const data = createElementExtension(payload);
@@ -89,12 +94,13 @@ export const removeElement = action((payload: any) => {
 });
 export const updateElement = action('[extension-element]: update element', (payload: any) => {
   const { id, data } = payload;
+  console.log(payload)
   operationHistory.do([
     {
       id,
       action: 'update',
       effect: 'element',
-      data: JSON.parse(JSON.stringify(payload.data))
+      data: cloneDeep(payload.data)
     }
   ]);
   for (let attrKey in data) {

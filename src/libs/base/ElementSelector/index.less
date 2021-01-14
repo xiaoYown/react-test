@@ -1,0 +1,49 @@
+.bb-selector-box-normal {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+.bb-selector-box-border {
+  box-sizing: border-box;
+  position: absolute;
+  border-color: #888888;
+  border-style: dashed;
+  background-color: #FFFFFF;
+  border-width: 0;
+
+  &.j-top {
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    border-top-width: 1px;
+  }
+  &.j-bottom {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    border-top-width: 1px;
+  }
+  &.j-right {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    border-right-width: 1px;
+  }
+  &.j-left {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    border-left-width: 1px;
+  }
+}

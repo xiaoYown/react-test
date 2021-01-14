@@ -1,6 +1,7 @@
 import React, { createRef } from 'react';
 import { withElement, withElementAndExtension } from '../../../../controller/wrapper';
 import ErrorBoundary from '../../error/ErrorBoundary';
+import ElementSelector from '../../ElementSelector';
 
 function clone (data: any) {
   return JSON.parse(JSON.stringify(data));
@@ -66,11 +67,16 @@ class ElementLayout extends React.Component<LayoutProps, LayoutState> {
   }
 
   render () {
+    const { id, children } = this.props;
     const { derivedStyle, didMount } = this.state;
-    return <div
-      id={this.props.id}
-      style={derivedStyle}
-    >{ didMount ? this.props.children : null }</div>
+
+    return <div style={derivedStyle}>
+      <ElementSelector id={id} />
+      <div
+        id={id}
+        style={{ width: '100%', height: '100%' }}
+      >{ didMount ? children : null }</div>
+    </div>
   }
 }
 
@@ -90,7 +96,6 @@ class _ElementRender extends React.Component<Props> {
   elementInstance: any = null
 
   componentDidMount () {
-    console.log(this.props)
     const { options, extensions } = this.props;
     const { extension } = options;
     const Write = extensions[extension].write;
