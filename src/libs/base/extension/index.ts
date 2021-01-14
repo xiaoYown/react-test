@@ -15,7 +15,6 @@ export class ExtensionWrite {
   mounted = () => {}
   update = (options: any) => {}
   beforeDestroy = () => {}
-  destroy = () => {}
 }
 
 export interface IfExtension {

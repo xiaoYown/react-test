@@ -1,9 +1,10 @@
 import * as G2Plot from '@antv/g2plot';
-import { IfExtension, ExtensionWrite } from '../../../libs/base/extension';
-import { EditPanel, EditPanelNode, NodeProps } from '../../../libs/base/edit-panel';
-import template from './01.template.json';
+import { IfExtension, ExtensionWrite } from '../../../../libs/base/extension';
+import { EditPanel, EditPanelNode, NodeProps } from '../../../../libs/base/edit-panel';
 
-import icon from './01.svg';
+import template from './template.json';
+import icon from './icon.svg';
+
 class ExtensionWrite01 extends ExtensionWrite {
   instance: any = null
 
@@ -58,7 +59,7 @@ class EditPanel01 extends EditPanel {
   }
 }
 
-export const Extension01: IfExtension = {
+const Extension01: IfExtension = {
   id: '01',
   version: '0.0.0',
   icon,
@@ -67,3 +68,5 @@ export const Extension01: IfExtension = {
   write: ExtensionWrite01,
   editPanel: EditPanel01
 }
+
+export default Extension01;

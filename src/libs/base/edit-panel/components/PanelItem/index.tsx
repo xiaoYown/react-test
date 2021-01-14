@@ -49,7 +49,6 @@ export function EditPanelNode (props: NodeProps) {
       onSave && onSave(props.id, pos, newValue);
     }
   }
-  console.log(span)
   switch (props.type) {
     case 'switch':
       Component = PanelSwitch;

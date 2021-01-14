@@ -101,6 +101,9 @@ class _ElementRender extends React.Component<Props> {
     this.elementInstance.update(nextProps.options);
     return false
   }
+  componentWillUnmount () {
+    this.elementInstance.beforeDestroy();
+  }
   render () {
     return null;
   }
