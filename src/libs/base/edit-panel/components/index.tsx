@@ -33,7 +33,7 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
           generalChildren.map((item: NodeProps) => {
             return <EditPanelNode
               {...item}
-              key={item.pos}
+              key={(item.dataIndex || '') + item.pos}
               id={id}
               options={item.options}
               data={options}
@@ -47,7 +47,7 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
           resourceChildren.map((item: NodeProps) => {
             return <EditPanelNode
               {...item}
-              key={item.pos}
+              key={(item.dataIndex || '') + item.pos}
               id={id}
               options={item.options}
               data={options}

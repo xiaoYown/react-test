@@ -13,7 +13,6 @@ class ExtensionWriteText extends ExtensionWrite {
   }
   getElement = (options: any) => {
     const { resource } = options;
-    console.log(resource)
     const el = document.createElement('div');
     el.innerHTML = resource.data;
     el.style.fontSize = resource.style.fontSize + 'px';

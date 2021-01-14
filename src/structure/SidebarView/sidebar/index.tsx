@@ -53,7 +53,6 @@ class Sidebar {
   public init(Component: AnyComponent) {
     const { options } = this;
     const SidebarView = (props: any) => {
-      console.log(props)
       return <Component
         render={() => {
           return <>
