@@ -1,6 +1,7 @@
 import * as G2Plot from '@antv/g2plot';
 import { IfExtension, ExtensionWrite } from '../../../../libs/base/extension';
 import { EditPanel, EditPanelNode, NodeProps } from '../../../../libs/base/edit-panel';
+import { translator } from '../../../../i18n';
 
 import template from './template.json';
 import icon from './icon.svg';
@@ -41,7 +42,7 @@ class ExtensionWrite01 extends ExtensionWrite {
 
 const children: any[] = [
   {
-    name: '显示标签',
+    name: translator('panel.showLabel'),
     type: 'switch',
     pos: 'config.label.visible'
   }
@@ -61,7 +62,7 @@ const Extension01: IfExtension = {
   id: '01',
   version: '0.0.0',
   icon,
-  name: '柱形图',
+  name: translator('element.column'),
   template: () => template,
   write: ExtensionWrite01,
   editPanel: EditPanel01

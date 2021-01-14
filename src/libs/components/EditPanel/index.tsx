@@ -3,6 +3,7 @@ import { NodeProps } from '../../base/edit-panel/index';
 import { withElementAndExtension } from '../../../controller/wrapper';
 import { GeneralPanel } from './General';
 import { Row } from 'antd';
+import { translator } from '../../../i18n';
 
 import { EditPanelNode } from './PanelItem';
 
@@ -27,7 +28,8 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
     const { generalChildren, resourceChildren } = this.state;
     const { options, id } = this.props;
     return !options ? null : <>
-      <h4>公共属性</h4>
+      <br/>
+      <h4>{ translator('panel.publicProps') }</h4>
       <Row>
         {
           generalChildren.map((item: NodeProps) => {
@@ -41,7 +43,8 @@ export class _EditPanelTree extends React.Component<EditPanelTreeProps> {
           })
         }
       </Row>
-      <h4>私有属性</h4>
+      <br/>
+      <h4>{ translator('panel.privateProps') }</h4>
       <Row>
         {
           resourceChildren.map((item: NodeProps) => {

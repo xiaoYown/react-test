@@ -1,8 +1,9 @@
 import { EditPanel, EditPanelNode, NodeProps } from '../../../base/edit-panel/index';
+import { translator } from '../../../../i18n';
 
 const children: any[] = [
   {
-    name: '纵向',
+    name: translator('panel.vertical'),
     type: 'radio',
     dataIndex: '0',
     pos: 'layout.reference',
@@ -15,16 +16,16 @@ const children: any[] = [
     options: [
       {
         value: 'top',
-        label: '顶部'
+        label: translator('panel.top')
       },
       {
         value: 'bottom',
-        label: '底部'
+        label: translator('panel.bottom')
       }
     ]
   },
   {
-    name: '横向',
+    name: translator('panel.horizontal'),
     type: 'radio',
     dataIndex: '2',
     pos: 'layout.reference',
@@ -37,16 +38,16 @@ const children: any[] = [
     options: [
       {
         value: 'left',
-        label: '左边'
+        label: translator('panel.left')
       },
       {
         value: 'right',
-        label: '右边'
+        label: translator('panel.right')
       }
     ]
   },
   {
-    name: '上',
+    name: translator('panel.top'),
     type: 'inputNumber',
     pos: 'layout.top',
     span: 12,
@@ -56,7 +57,7 @@ const children: any[] = [
     }
   },
   {
-    name: '左',
+    name: translator('panel.left'),
     type: 'inputNumber',
     pos: 'layout.left',
     span: 12,
@@ -66,7 +67,7 @@ const children: any[] = [
     }
   },
   {
-    name: '宽',
+    name: translator('panel.width'),
     type: 'inputNumber',
     pos: 'layout.width',
     span: 12,
@@ -76,7 +77,7 @@ const children: any[] = [
     }
   },
   {
-    name: '高',
+    name: translator('panel.height'),
     type: 'inputNumber',
     pos: 'layout.height',
     span: 12,

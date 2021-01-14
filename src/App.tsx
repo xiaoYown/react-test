@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-
-import syntheticEvent from './libs/synthetic-event';
+import './i18n';
 
 import ViewsContainer from './structure/ViewsContainer';
 

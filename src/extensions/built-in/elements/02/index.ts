@@ -1,5 +1,6 @@
 import { IfExtension, ExtensionWrite } from '../../../../libs/base/extension';
 import EditPanelText from './EditPanel';
+import { translator } from '../../../../i18n';
 
 import template from './template.json';
 import icon from './icon.svg';
@@ -36,7 +37,7 @@ const ExtensionText: IfExtension = {
   id: '02',
   version: '0.0.0',
   icon,
-  name: '文本',
+  name: translator('element.text'),
   template: () => template,
   write: ExtensionWriteText,
   editPanel: EditPanelText
