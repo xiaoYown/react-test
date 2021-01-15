@@ -6,7 +6,7 @@ import { withSidebarChild } from '../../controller/wrapper';
 
 // import { MouseBus, MouseEvents, ModalBus, ModalEvents } from '../../controller';
 
-import { ChildViewComponent } from '../SidebarView/childView';
+import { ChildViewComponent } from '../../libs/components/Sidebar/ChildView';
 
 interface Props {
   view: string;

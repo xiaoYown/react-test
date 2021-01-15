@@ -1,6 +1,6 @@
 import React from 'react';
-import { insertElement } from '../../../../controller/store/state';
-import { withElementExtensions } from '../../../../controller/wrapper';
+import { insertElement } from '../../../../../controller/store/state';
+import { withElementExtensions } from '../../../../../controller/wrapper';
 import styles from './index.module.css';
 // import { IfExtension } from '../../../libs/base/extension';
 

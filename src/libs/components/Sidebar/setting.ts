@@ -1,7 +1,13 @@
-import { SideNodeProps } from './sidebar';
-import { views } from './childView';
-import { ModalEvents } from '../../controller';
-import { translator } from '../../i18n';
+import { SideNodeProps } from '../Sidebar';
+import { ModalEvents } from '../../../controller';
+import { translator } from '../../../i18n';
+
+import Insert from './ChildView/Insert';
+
+export enum views {
+  insert = 'insert',
+  insert2 = 'insert2'
+}
 
 const baseExtInsert: SideNodeProps = {
   key: views.insert,
@@ -19,6 +25,11 @@ const baseExtInsert2: SideNodeProps = {
   title: translator('sidebar.insert'),
   event: ModalEvents.OpenSideChild,
   active: false
+};
+
+export const ChildViewsComponets = {
+  [views.insert]: Insert,
+  [views.insert2]: Insert
 };
 
 export const sidebarList = [

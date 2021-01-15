@@ -1,10 +1,9 @@
 import React from 'react';
 import './index.css';
 
-import { ModalBus, ModalEvents, MouseBus, MouseEvents } from '../../../controller';
-import { sidebarList } from '../setting';
+import { ModalBus, ModalEvents } from '../../../controller';
+import { sidebarList } from './setting';
 import { withSidebarChild } from '../../../controller/wrapper';
-import SidebarView from '..';
 
 export type AnyComponent<P = any> =
 | (new (props: P) => React.Component)

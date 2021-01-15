@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 
-import sidebar, { AnyComponent } from './sidebar';
+import sidebar, { AnyComponent } from '../../libs/components/Sidebar';
 
 
 interface Props {
