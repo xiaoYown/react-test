@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 
-import { appendItem, itemListCache, rootCache } from './store/state';
+import { appendItem, itemListCache, rootCache, updateItem } from './store/state';
 
 let num = 0;
 
@@ -17,7 +17,8 @@ const Filler = observer(props => {
     setValue(e.target.value)
   }
   const onConfirmValue = () => {
-    itemListCache[current].modify(value)
+    // itemListCache[current].modify(value)
+    updateItem(current, value)
   }
 
   return ReactDOM.createPortal(<div

@@ -89,7 +89,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "commit": "git-cz"
+    "commit":"git-cz"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -172,8 +172,6 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
     "babel-plugin-import": "^1.13.1",
     "babel-preset-mobx": "^2.0.0",
     "commitizen": "^4.2.2",
