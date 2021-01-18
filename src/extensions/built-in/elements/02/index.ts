@@ -16,7 +16,8 @@ class ExtensionWriteText extends ExtensionWrite {
     const el = document.createElement('div');
     el.innerHTML = resource.data;
     el.style.fontSize = resource.style.fontSize + 'px';
-
+    // error 测试
+    // console.log(resource.a.b)
     return el;
   }
   update = (options: any) => {
