@@ -1,0 +1,21 @@
+{
+  "name": "cypress-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clear": "node ./scripts/clear.js",
+    "test": "cypress open",
+    "headless": "cypress run --headless",
+    "report": "node tests/e2e/report/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^6.3.0",
+    "cypress-wait-until": "^1.7.1",
+    "mochawesome": "^6.2.1",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.1.0"
+  }
+}
