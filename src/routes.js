@@ -15,6 +15,7 @@ import PageVirtualized from './Virtualized';
 import PageContext from './Context';
 import PageAxisBoard from './AxisBoard';
 import PageD3Zoom from './D3Zoom';
+import PageFlexible from './Flexible';
 
 const routers = [
   {
@@ -117,6 +118,12 @@ const routers = [
     path: '/d3-zoom',
     name: 'd3-zoom',
     component: PageD3Zoom,
+    exact: true
+  },
+  {
+    path: '/flexible',
+    name: 'flexible',
+    component: PageFlexible,
     exact: true
   },
 ];
