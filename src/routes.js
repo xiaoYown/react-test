@@ -16,6 +16,7 @@ import PageContext from './Context';
 import PageAxisBoard from './AxisBoard';
 import PageD3Zoom from './D3Zoom';
 import PageFlexible from './Flexible';
+import PageFixedAdaptation from './FixedAdaptation';
 
 const routers = [
   {
@@ -124,6 +125,12 @@ const routers = [
     path: '/flexible',
     name: 'flexible',
     component: PageFlexible,
+    exact: true
+  },
+  {
+    path: '/fixed-adaptation',
+    name: 'fixed-adaptation',
+    component: PageFixedAdaptation,
     exact: true
   },
 ];
