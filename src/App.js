@@ -1,4 +1,5 @@
 import 'antd/dist/antd.css';
+import './App.css';
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';

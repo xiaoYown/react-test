@@ -3,11 +3,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import routes from '../routes'
 
-class PageFlv extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
+class PageIndex extends React.Component {
+  state = {
+    loaded: false,
   }
   render() {
     return <div className="page-index">
@@ -24,4 +22,4 @@ class PageFlv extends React.Component {
   }
 };
 
-export default PageFlv;
+export default PageIndex;
