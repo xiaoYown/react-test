@@ -1,0 +1,107 @@
+{
+  "dataSourceBasic": {
+    "schema": {},
+    "type": "cloud-integration",
+    "name": "outdemo_gdq7oo4",
+    "id": "data-f1srgs21hc0"
+  },
+  "methodConfig": {
+    "title": "新方法 1",
+    "type": "http",
+    "outParams": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": true,
+      "properties": {
+        "bb": {
+          "x-keyPath": "",
+          "x-id": "67d83ee",
+          "format": "",
+          "x-index": 2,
+          "title": "bb",
+          "type": "string",
+          "x-unique": false,
+          "x-required": false
+        }
+      }
+    },
+    "intent": "create",
+    "inParams": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": true,
+      "properties": {
+        "bb": {
+          "x-keyPath": "",
+          "x-id": "b1e0a7a",
+          "format": "",
+          "x-index": 2,
+          "title": "bb",
+          "type": "string",
+          "x-unique": false,
+          "x-required": false
+        },
+        "name": {
+          "x-keyPath": "",
+          "x-id": "78ceae3",
+          "format": "",
+          "x-index": 2,
+          "title": "name",
+          "type": "string",
+          "x-unique": false,
+          "x-required": true,
+          "name": "name"
+        },
+        "age": {
+          "x-keyPath": "",
+          "x-id": "986dbc0",
+          "format": "",
+          "x-index": 2,
+          "title": "age",
+          "type": "string",
+          "x-unique": false,
+          "x-required": true,
+          "name": "age"
+        }
+      }
+    },
+    "name": "method_49db135e64e98",
+    "calleeBody": {
+      "method": "GET",
+      "callee": "/**\n* 使用 npm 包 request 发送http请求, 详细使用文档可以参考\n*  https://github.com/request/request#readme\n*/\nconst request = require('request');\n\n/** 依据 http状态码 判断请求是否成功 */\nfunction isSuccessStatusCode(code) {\n return code >= 200 && code < 300;\n}\n\nmodule.exports = function (params, context) {\n  // params 即为入参定义的结构, 可以在 request 的请求配置中使用 params\n  return new Promise(function (resolve, reject) {\n    request(\n      {\n        url: 'https://reqres.in/api/users?page=1&per_page=3',\n        method: 'GET',\n        // 将 json 为 true, 响应结果的 body 会被自动转换为对象,\n        //   在POST请求中, 也会自动设置将 Content-Type 设置为 application/json\n        json: true\n      },\n      function (err, response, body) {\n        if (err) return reject(err);\n        if (!isSuccessStatusCode(response.statusCode))\n          return reject(new Error('request failed: ' + response.statusCode));\n        return resolve(body);\n      }\n    );\n  });\n};",
+      "query": {
+        "values": {
+          "type": "object",
+          "value": {
+            "name": "11",
+            "age": "{{params.age}}"
+          },
+          "key": "3bc0c8768fc8e6"
+        }
+      },
+      "isUrlInValid": false,
+      "body": {
+        "values": {
+          "type": "string",
+          "value": "{{{params.name}}}",
+          "key": "json"
+        },
+        "contentType": "json"
+      },
+      "url": "https://dev.api.rabbitpre.com/api/editorplugin/datasource/test/get",
+      "header": {
+        "values": {
+          "type": "object",
+          "value": {},
+          "key": "3709c346ce38b4"
+        }
+      }
+    },
+    "isCollapse": true
+  },
+  "params": {
+    "bb": "这里是示例",
+    "name": "这里是示例",
+    "age": "这里是示例"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "accessMethod": "string",
+  "creator": "string",
+  "datasourceDesc": "string",
+  "datasourceId": 0,
+  "datasourceKey": "string",
+  "datasourceName": "string",
+  "datasourceType": "string",
+  "environment": "string",
+  "managerWebsiteUrl": "string",
+  "orgId": "string",
+  "updator": "string",
+  "datasourceMethodList": [
+    {
+      "updator": "string",
+      "creator": "string",
+      "datasourceId": 0,
+      "methodId": 0,
+      "methodKey": "string",
+      "methodName": "string",
+      "methodType": "string",
+      "orgId": "string",
+      "inParams": [
+        {
+          "dataType": "string",
+          "elementDataType": "string",
+          "enumFlag": false,
+          "enums": [
+            "string"
+          ],
+          "fieldKey": "string",
+          "fieldName": "string",
+          "maxLen": 0,
+          "minLen": 0,
+          "objProperties": [
+            "string"
+          ],
+          "requireFlag": false,
+          "serialNum": 0,
+          "uniqueFlag": false
+        }
+      ],
+      "outParams": [
+        {
+          "dataType": "string",
+          "elementDataType": "string",
+          "enumFlag": false,
+          "enums": [
+            "string"
+          ],
+          "fieldKey": "string",
+          "fieldName": "string",
+          "maxLen": 0,
+          "minLen": 0,
+          "objProperties": [
+            "string"
+          ],
+          "requireFlag": false,
+          "serialNum": 0,
+          "uniqueFlag": false
+        }
+      ]
+    },
+    "calleeBody": {
+      "method": "GET",
+      "callee": "/**\n* 使用 npm 包 request 发送http请求, 详细使用文档可以参考\n*  https://github.com/request/request#readme\n*/\nconst request = require('request');\n\n/** 依据 http状态码 判断请求是否成功 */\nfunction isSuccessStatusCode(code) {\n return code >= 200 && code < 300;\n}\n\nmodule.exports = function (params, context) {\n  // params 即为入参定义的结构, 可以在 request 的请求配置中使用 params\n  return new Promise(function (resolve, reject) {\n    request(\n      {\n        url: 'https://reqres.in/api/users?page=1&per_page=3',\n        method: 'GET',\n        // 将 json 为 true, 响应结果的 body 会被自动转换为对象,\n        //   在POST请求中, 也会自动设置将 Content-Type 设置为 application/json\n        json: true\n      },\n      function (err, response, body) {\n        if (err) return reject(err);\n        if (!isSuccessStatusCode(response.statusCode))\n          return reject(new Error('request failed: ' + response.statusCode));\n        return resolve(body);\n      }\n    );\n  });\n};",
+      "query": {
+        "values": {
+          "type": "object",
+          "value": {
+            "name": "11",
+            "age": "{{params.age}}"
+          },
+          "key": "3bc0c8768fc8e6"
+        }
+      },
+      "isUrlInValid": false,
+      "body": {
+        "values": {
+          "type": "string",
+          "value": "{\r\n    \"name\": \"{{params.name}}\"\r\n}",
+          "key": "json"
+        },
+        "contentType": "json"
+      },
+      "url": "https://dev.api.rabbitpre.com/api/editorplugin/datasource/test/get",
+      "header": {
+        "values": {
+          "type": "object",
+          "value": {},
+          "key": "3709c346ce38b4"
+        }
+      }
+    }
+  ]
+}
