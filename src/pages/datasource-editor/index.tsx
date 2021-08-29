@@ -1,38 +1,28 @@
+/*
+ * @Author: xiaoyown 
+ * @Date: 2021-08-30 00:00:49 
+ * @Last Modified by: xiaoyown
+ * @Last Modified time: 2021-08-30 00:36:15
+ */
 import './index.less';
 import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/lib/form';
 import { Form, Input, Button, Row, Col } from 'antd';
-import { Select, createHideItem } from './custom-form-cmps';
+import { createHideItem } from './components';
+import { CustomSelect } from './components/custom-select';
+import { DATASOURCE_TYPE_LIST, ACCESS_METHOD_LIST } from './constant/data-types';
 
 import MethodInput from './method-input';
 import { DatasourceType } from './typing';
 
 const { TextArea } = Input;
 
-const datasourceTypeList = [
-  {
-    label: '外部数据源',
-    value: 'OUT',
-  },
-];
-
-const accessMethodList = [
-  {
-    label: 'http',
-    value: 'HTTP',
-  },
-  {
-    label: '数据库直连',
-    value: 'DATABASE',
-  },
-];
-
 interface DatasourceEditorProps extends FormComponentProps {
   onConfirm?: (arg0: any) => void;
   datasource: DatasourceType;
 }
 
-interface IState {}
+interface IState { }
 
 const tailFormItemLayout = {
   labelCol: { span: 6 },
@@ -51,7 +41,7 @@ type MarkUffixProps = {
   markSuffix: string;
 };
 
-const InputSuffixNum = (props: {len: number, max: number}) => {
+const InputSuffixNum = (props: { len: number, max: number }) => {
   const { len, max } = props;
   return <span
     className="datasource-input-suffix"
@@ -78,7 +68,7 @@ class DatasourceEditor extends Component<DatasourceEditorProps, IState> {
       },
     } = this.props;
 
-    const formData = {...datasource, ...getFieldsValue()};
+    const formData = { ...datasource, ...getFieldsValue() };
     const datasourceName = formData.datasourceName;
     const datasourceKey = formData.datasourceKey;
 
@@ -136,13 +126,13 @@ class DatasourceEditor extends Component<DatasourceEditorProps, IState> {
             {getFieldDecorator('datasourceType', {
               initialValue: datasource.datasourceType,
               rules: [createRequired('数据源类型不能为空')],
-            })(<Select options={datasourceTypeList} />)}
+            })(<CustomSelect options={DATASOURCE_TYPE_LIST} />)}
           </Form.Item>
           <Form.Item label="接入方式" {...tailFormItemLayout}>
             {getFieldDecorator('accessMethod', {
               initialValue: datasource.accessMethod,
               rules: [createRequired('接入方式不能为空')],
-            })(<Select options={accessMethodList} />)}
+            })(<CustomSelect options={ACCESS_METHOD_LIST} />)}
           </Form.Item>
           <Form.Item label="数据源管理后台" {...tailFormItemLayout}>
             {getFieldDecorator('managerWebsiteUrl', {
@@ -161,13 +151,11 @@ class DatasourceEditor extends Component<DatasourceEditorProps, IState> {
               rules: [createRequired('至少有一个数据源方法', 'array')],
             })(<MethodInput />)}
           </Form.Item>
-          <div style={{ display: 'none' }}>
-            {createHideItem(
-              getFieldDecorator,
-              'environment',
-              datasource?.environment,
-            )}
-          </div>
+          {
+            createHideItem(
+              getFieldDecorator, 'environment', datasource?.environment,
+            )
+          }
           <br />
           <Row type="flex" justify="center">
             <Col>
@@ -194,7 +182,7 @@ class DatasourceEditor extends Component<DatasourceEditorProps, IState> {
     const { onConfirm, form } = this.props;
     onConfirm && onConfirm(form.getFieldsValue());
   };
-  onHandlePublish = () => {};
+  onHandlePublish = () => { };
 }
 
 export default Form.create()(DatasourceEditor);

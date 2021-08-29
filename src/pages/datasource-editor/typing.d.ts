@@ -1,3 +1,9 @@
+/*
+ * @Author: xiaoyown 
+ * @Date: 2021-08-30 00:00:45 
+ * @Last Modified by:   xiaoyown 
+ * @Last Modified time: 2021-08-30 00:00:45 
+ */
 export type ParamDataType =
   | 'STRING'
   | 'BOOLEAN'

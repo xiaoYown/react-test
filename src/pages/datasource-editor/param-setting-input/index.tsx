@@ -1,12 +1,20 @@
+/*
+ * @Author: xiaoyown 
+ * @Date: 2021-08-30 00:01:02 
+ * @Last Modified by: xiaoyown
+ * @Last Modified time: 2021-08-30 00:40:54
+ */
 import React, { Component } from 'react';
 import ParamSettingInputForm, {
   SETTING_TYPE,
 } from '../param-setting-input-form';
-import { Table, Modal } from 'antd';
+import { Table } from 'antd';
 import { ColumnProps } from 'antd/es/table';
-import { AddButton, ModalVisibleContext, confirm } from '../custom-form-cmps';
+import { AddButton, ModalVisibleContext, confirm } from '../components';
+import { createNewParam } from '../utils';
 import { ParamType } from '../typing';
 import { cloneDeep } from 'lodash';
+import { PARAM_DATA_TYPES } from '../constant/data-types';
 
 interface IProps {
   value?: ParamType[];
@@ -23,24 +31,6 @@ interface IState {
 
 const hasChildParam = (dataType: string): boolean =>
   ['OBJECT', 'ARRAY'].includes(dataType);
-
-// 新建参数
-const createNewParam = (): ParamType => ({
-  dataType: 'STRING',
-  elementDataType: 'string',
-  enumFlag: false,
-  enums: [],
-  fieldKey: '',
-  fieldName: '',
-  maxLen: 0,
-  minLen: 0,
-  objProperties: [],
-  requireFlag: false,
-  serialNum: 0,
-  uniqueFlag: false,
-  children: [],
-});
-const arr = [1, 2, 3];
 
 // 获取新增后参数列表
 const getAddParamTree = (
@@ -174,6 +164,11 @@ class ParamSettingInput extends Component<IProps, IState> {
         title: '数据类型',
         dataIndex: 'dataType',
         key: 'dataType',
+        render: (dataType: string) => {
+          const info =
+            PARAM_DATA_TYPES.find(item => item.value === dataType);
+          return `${info?.typeLabel}-${info?.label}`;
+        }
       },
       {
         title: '操作',

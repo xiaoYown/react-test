@@ -1,8 +1,16 @@
+/*
+ * @Author: xiaoyown 
+ * @Date: 2021-08-30 00:01:06 
+ * @Last Modified by: xiaoyown
+ * @Last Modified time: 2021-08-30 00:40:33
+ */
 import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/lib/form';
 import { Form, Input, Radio } from 'antd';
 import ParamSettingInput from '../param-setting-input';
-import { createHideItem, Select } from '../custom-form-cmps';
+import { createHideItem } from '../components';
+import { CustomSelect } from '../components/custom-select';
+import { METHOD_LIST } from '../constant/data-types';
 
 import { MethodType } from '../typing';
 
@@ -11,25 +19,6 @@ interface MethodInputFormProps extends FormComponentProps {
 }
 
 const createRequired = (message: string) => ({ required: true, message });
-
-const methodList = [
-  {
-    label: 'GET',
-    value: 'GET',
-  },
-  {
-    label: 'POST',
-    value: 'POST',
-  },
-  {
-    label: 'PUT',
-    value: 'PUT',
-  },
-  {
-    label: 'DELETE',
-    value: 'DELETE',
-  },
-];
 
 const tailFormItemLayout = {
   labelCol: { span: 3 },
@@ -77,7 +66,7 @@ class MethodInputForm extends Component<MethodInputFormProps> {
           {getFieldDecorator('method', {
             initialValue: values?.method,
             rules: [createRequired('Method 不能为空')],
-          })(<Select options={methodList} />)}
+          })(<CustomSelect options={METHOD_LIST} />)}
         </Form.Item>
         <Form.Item label="入参" {...tailFormItemLayout}>
           {getFieldDecorator('inParams', {
@@ -90,12 +79,10 @@ class MethodInputForm extends Component<MethodInputFormProps> {
           })(<ParamSettingInput />)}
         </Form.Item>
         {/* 部分不可修改数据定义, 仅作 form 数据读取使用 */}
-        <div style={{ display: 'none' }}>
-          {createHideItem(getFieldDecorator, 'methodId', values?.methodId)}
-          {createHideItem(getFieldDecorator, 'orgId', values?.orgId)}
-          {createHideItem(getFieldDecorator, 'updator', values?.updator)}
-          {createHideItem(getFieldDecorator, 'calleeBody', values?.calleeBody)}
-        </div>
+        {createHideItem(getFieldDecorator, 'methodId', values?.methodId)}
+        {createHideItem(getFieldDecorator, 'orgId', values?.orgId)}
+        {createHideItem(getFieldDecorator, 'updator', values?.updator)}
+        {createHideItem(getFieldDecorator, 'calleeBody', values?.calleeBody)}
       </Form>
     );
   }

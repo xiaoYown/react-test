@@ -1,11 +1,17 @@
+/*
+ * @Author: xiaoyown 
+ * @Date: 2021-08-30 00:01:09 
+ * @Last Modified by: xiaoyown
+ * @Last Modified time: 2021-08-30 00:40:48
+ */
 import React, { Component } from 'react';
 import { Table, Modal, Icon } from 'antd';
 import { ColumnProps } from 'antd/es/table';
 
 import MethodInputForm from '../method-input-form';
-import { AddButton, confirm } from '../custom-form-cmps';
+import { ModalVisibleContext, AddButton, confirm } from '../components';
 import { MethodType } from '../typing';
-import { ModalVisibleContext } from '../custom-form-cmps';
+import { createNewMethod } from '../utils';
 import { cloneDeep } from 'lodash';
 
 interface IProps {
@@ -14,38 +20,6 @@ interface IProps {
 }
 
 interface IState {}
-
-/**
- * 为新方法生成临时 methodId, 发送数据时会进行移出
- */
-const createTempMethodId = (methodList: MethodType[]): string => {
-  let newId: string = String(Math.floor(Math.random() * 1000));
-
-  if (methodList.findIndex(({ methodId }) => methodId === newId) !== -1) {
-    newId = createTempMethodId(methodList);
-  }
-  return newId;
-};
-
-/**
- * 通过方法列表新建方法
- */
-const createNewMethod = (methodList: MethodType[]): MethodType => {
-  return {
-    datasourceId: 0,
-    calleeBody: {},
-    inParams: [],
-    url: '',
-    method: 'GET',
-    methodId: createTempMethodId(methodList),
-    methodName: `方法 - ${Date.now()}`,
-    methodType: 'HTTP',
-    methodKey: 'key-1',
-    orgId: '',
-    outParams: [],
-    updator: '',
-  };
-};
 
 /**
  * 修改方法自定义 form 控件

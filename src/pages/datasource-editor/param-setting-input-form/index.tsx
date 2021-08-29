@@ -2,12 +2,15 @@
  * @Author: qinzhenya 
  * @Date: 2021-08-29 15:11:48 
  * @Last Modified by: xiaoyown
- * @Last Modified time: 2021-08-29 15:12:13
+ * @Last Modified time: 2021-08-30 00:41:01
  */
 import React, { Component } from 'react';
-import { Drawer, Form, Input, InputNumber, Select, Radio, Button } from 'antd';
-import { createHideItem, EnumInput } from '../custom-form-cmps';
-import { getParamSetting } from '../custom-form-utils';
+import { Drawer, Form, Input, InputNumber, Radio, Button } from 'antd';
+import { createHideItem } from '../components';
+import { EnumInput } from '../components/enum-input';
+import { CustomSelect } from '../components/custom-select';
+import { getParamSetting } from '../utils';
+import { PARAM_DATA_TYPES } from '../constant/data-types';
 
 import { ParamEnum, ParamType } from '../typing';
 
@@ -31,14 +34,6 @@ const TYPES_VIEW = {
   },
 };
 
-const dataTypeOptions = [
-  { value: 'STRING', label: '字符串' },
-  { value: 'BOOLEAN', label: '布尔值' },
-  { value: 'NUMBER', label: '数字' },
-  { value: 'OBJECT', label: '对象' },
-  { value: 'ARRAY', label: '数组' },
-];
-
 interface ParamSettingInputFormProps {
   form: any;
   type: SETTING_TYPE;
@@ -49,7 +44,7 @@ interface ParamSettingInputFormProps {
   onCancel?: () => void;
 }
 
-interface IState {}
+interface IState { }
 
 const tailFormItemLayout = {
   labelCol: { span: 4 },
@@ -57,6 +52,26 @@ const tailFormItemLayout = {
 };
 
 const createRequired = (message: string) => ({ required: true, message });
+
+const dataTypeOptions: Record<string, string[]> = {
+  fieldName: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  fieldKey: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  dataType: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  elementDataType: ['ARRAY'],
+  minLen: ['STRING', 'NUMBER'],
+  maxLen: ['STRING', 'NUMBER'],
+  requireFlag: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  uniqueFlag: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  enumFlag: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  enums: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+  objProperties: ['OBJECT', 'ARRAY'],
+  serialNum: ['STRING', 'BOOLEAN', 'NUMBER', 'OBJECT', 'ARRAY'],
+};
+
+const hasOption = (field: string, dataType: string): boolean => {
+  const allowTypes = dataTypeOptions[field] || [];
+  return allowTypes.includes(dataType)
+};
 
 class ParamSettingInputForm extends Component<
   ParamSettingInputFormProps,
@@ -82,7 +97,13 @@ class ParamSettingInputForm extends Component<
     const minLen = viewCondition?.minLen || datasource?.minLen || 0;
     const { enumFlag } = viewCondition;
 
-    let hasLimit = !!curTypeSetting?.limit;
+    const hasLimit = !!curTypeSetting?.limit;
+
+    const useDataTypeOptions = [...PARAM_DATA_TYPES];
+
+    if (curDataType === 'ARRAY') {
+      useDataTypeOptions.splice(4, 1);
+    }
 
     return (
       <>
@@ -117,22 +138,25 @@ class ParamSettingInputForm extends Component<
             </Form.Item>
             <Form.Item label="数据类型" {...tailFormItemLayout}>
               {getFieldDecorator('dataType', {
-                initialValue: datasource?.dataType || dataTypeOptions[0].value,
+                initialValue: datasource?.dataType || PARAM_DATA_TYPES[0].value,
                 rules: [createRequired('')],
               })(
-                <Select>
-                  {dataTypeOptions.map(({ value, label }) => {
-                    return (
-                      <Select.Option key={value} value={value}>
-                        {label}
-                      </Select.Option>
-                    );
-                  })}
-                </Select>,
+                <CustomSelect options={PARAM_DATA_TYPES} />,
               )}
             </Form.Item>
-            {hasLimit ? (
-              <>
+            {
+              hasOption('elementDataType', curDataType) ?
+                <Form.Item label="元素类型" {...tailFormItemLayout}>
+                  {getFieldDecorator('elementDataType', {
+                    initialValue: datasource?.elementDataType,
+                    rules: [createRequired('元素类型不能为空')],
+                  })(
+                    <CustomSelect options={useDataTypeOptions} />,
+                  )}
+                </Form.Item> : null
+            }
+            {
+              hasOption('minLen', curDataType) ?
                 <Form.Item
                   label={curTypeSetting.limit?.textMin}
                   {...tailFormItemLayout}
@@ -142,7 +166,10 @@ class ParamSettingInputForm extends Component<
                   })(
                     <InputNumber min={0} max={maxLen} step={1} precision={0} />,
                   )}
-                </Form.Item>
+                </Form.Item> : null
+            }
+            {
+              hasOption('maxLen', curDataType) ?
                 <Form.Item
                   label={curTypeSetting.limit?.textMax}
                   {...tailFormItemLayout}
@@ -150,9 +177,8 @@ class ParamSettingInputForm extends Component<
                   {getFieldDecorator('maxLen', {
                     initialValue: datasource?.maxLen,
                   })(<InputNumber min={minLen} step={1} precision={0} />)}
-                </Form.Item>
-              </>
-            ) : null}
+                </Form.Item> : null
+            }
             <Form.Item label="是否必填" {...tailFormItemLayout}>
               {getFieldDecorator('requireFlag', {
                 initialValue: datasource?.requireFlag || false,
@@ -183,41 +209,32 @@ class ParamSettingInputForm extends Component<
                 </Radio.Group>,
               )}
             </Form.Item>
-            {enumFlag ? (
-              <Form.Item
-                className="s-hide-label"
-                label=" "
-                {...tailFormItemLayout}
-              >
-                {getFieldDecorator('enums', {
-                  initialValue: datasource?.enums,
-                  rules: [{ validator: this.checkEnums }],
-                })(<EnumInput />)}
-              </Form.Item>
-            ) : null}
+            {
+              enumFlag ?
+                <Form.Item
+                  className="s-hide-label"
+                  label=" "
+                  {...tailFormItemLayout}
+                >
+                  {getFieldDecorator('enums', {
+                    initialValue: datasource?.enums,
+                    rules: [{ validator: this.checkEnums }],
+                  })(<EnumInput />)}
+                </Form.Item>
+                : null
+            }
+            {
+              hasOption('objProperties', curDataType) ?
+                createHideItem(
+                  getFieldDecorator, 'objProperties', datasource?.objProperties,
+                ) : null
+            }
             {/* 部分不可修改数据定义, 仅作 form 数据读取使用 */}
-            <div style={{ display: 'none' }}>
-              {createHideItem(
-                getFieldDecorator,
-                'elementDataType',
-                datasource?.elementDataType,
-              )}
-              {createHideItem(
-                getFieldDecorator,
-                'objProperties',
-                datasource?.objProperties,
-              )}
-              {createHideItem(
-                getFieldDecorator,
-                'serialNum',
-                datasource?.serialNum,
-              )}
-              {createHideItem(
-                getFieldDecorator,
-                'objProperties',
-                datasource?.objProperties,
-              )}
-            </div>
+            {
+              createHideItem(
+                getFieldDecorator, 'serialNum', datasource?.serialNum,
+              )
+            }
             {view.hasMap ? <span>映射</span> : null}
             <Button
               type="primary"
@@ -247,9 +264,11 @@ class ParamSettingInputForm extends Component<
   };
 
   onChangeEnumFlag = (e: any) => {
+    const { value } = e.target;
     const { form } = this.props;
     const enums = form.getFieldValue('enums');
-    if (!enums || !enums.length) {
+
+    if (value && !enums || !enums.length) {
       form.setFieldsValue({
         enums: [{ name: '', value: '' }],
       });
