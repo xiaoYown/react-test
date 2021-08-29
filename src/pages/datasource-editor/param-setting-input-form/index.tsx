@@ -1,3 +1,9 @@
+/*
+ * @Author: qinzhenya 
+ * @Date: 2021-08-29 15:11:48 
+ * @Last Modified by: xiaoyown
+ * @Last Modified time: 2021-08-29 15:12:13
+ */
 import React, { Component } from 'react';
 import { Drawer, Form, Input, InputNumber, Select, Radio, Button } from 'antd';
 import { createHideItem, EnumInput } from '../custom-form-cmps';
@@ -196,7 +202,6 @@ class ParamSettingInputForm extends Component<
                 'elementDataType',
                 datasource?.elementDataType,
               )}
-              {createHideItem(getFieldDecorator, 'enums', datasource?.enums)}
               {createHideItem(
                 getFieldDecorator,
                 'objProperties',
@@ -230,12 +235,15 @@ class ParamSettingInputForm extends Component<
     );
   }
 
-  checkEnums = (rule: any, value: any, callback: any) => {
-    console.log(value);
-    if (value.length >= 2) {
-      return callback();
+  checkEnums = (rule: any, value: ParamEnum[], callback: any) => {
+    let hasEmpty = false;
+    for (let item of value) {
+      hasEmpty = !item.name || !item.value;
     }
-    callback('Price must greater than zero!');
+    if (hasEmpty) {
+      return callback('枚举不能为空');
+    }
+    callback();
   };
 
   onChangeEnumFlag = (e: any) => {

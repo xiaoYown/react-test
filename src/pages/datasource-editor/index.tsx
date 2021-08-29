@@ -46,12 +46,22 @@ const createRequired = (msg: string, type: string = 'string') => ({
 });
 
 type MarkUffixProps = {
+  len: number;
+  max: number;
   markSuffix: string;
 };
+
+const InputSuffixNum = (props: {len: number, max: number}) => {
+  const { len, max } = props;
+  return <span
+    className="datasource-input-suffix"
+  >{len}/{max}</span>
+}
+
 const MarkInputSuffix = (props: MarkUffixProps) => {
   return (
     <div className="datasource-edit-mark-suffix">
-      <span>0/20</span>
+      <InputSuffixNum len={props.len} max={props.max} />
       <Input disabled={true} value={`_${props.markSuffix}`} />
     </div>
   );
@@ -59,10 +69,18 @@ const MarkInputSuffix = (props: MarkUffixProps) => {
 
 class DatasourceEditor extends Component<DatasourceEditorProps, IState> {
   render() {
+
     const {
       datasource,
-      form: { getFieldDecorator },
+      form: {
+        getFieldDecorator,
+        getFieldsValue,
+      },
     } = this.props;
+
+    const formData = {...datasource, ...getFieldsValue()};
+    const datasourceName = formData.datasourceName;
+    const datasourceKey = formData.datasourceKey;
 
     return (
       <Form>
@@ -70,18 +88,41 @@ class DatasourceEditor extends Component<DatasourceEditorProps, IState> {
           <Form.Item label="数据源名称" {...tailFormItemLayout}>
             {getFieldDecorator('datasourceName', {
               initialValue: datasource.datasourceName,
-              rules: [createRequired('数据源名称不能为空')],
-            })(<Input autoComplete="off" />)}
+              rules: [
+                createRequired('数据源名称不能为空'),
+                {
+                  max: 20,
+                  message: '最大长度不能超过 20'
+                }
+              ],
+            })(<Input
+              suffix={<InputSuffixNum
+                len={datasourceName.length}
+                max={20}
+              />}
+              autoComplete="off"
+            />)}
           </Form.Item>
           <Form.Item label="数据源标识" {...tailFormItemLayout}>
             {getFieldDecorator('datasourceKey', {
+              rules: [
+                createRequired('数据源名称不能为空'),
+                {
+                  max: 20,
+                  message: '最大长度不能超过 20'
+                }
+              ],
               initialValue: datasource.datasourceKey,
             })(
               <Input
                 autoComplete="off"
                 className="datasource-editor-item-mark"
                 suffix={
-                  <MarkInputSuffix markSuffix={datasource.datasourceKey} />
+                  <MarkInputSuffix
+                    len={datasourceKey.length}
+                    max={20}
+                    markSuffix={datasource.datasourceKey}
+                  />
                 }
               />,
             )}

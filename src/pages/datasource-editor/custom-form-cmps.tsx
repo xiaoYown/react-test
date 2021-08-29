@@ -93,6 +93,7 @@ export class EnumInput extends React.Component<EnumInputProps> {
           ? value.map((item, index) => (
               <div key={index} className="datasource-param-enum-input">
                 <C.Input
+                  style={{ width: '100px' }}
                   placeholder="枚举名称"
                   value={item.name}
                   onChange={(e) =>
@@ -100,6 +101,7 @@ export class EnumInput extends React.Component<EnumInputProps> {
                   }
                 />
                 <C.Input
+                  style={{ width: '100px' }}
                   placeholder="枚举值"
                   value={item.value}
                   onChange={(e) =>
